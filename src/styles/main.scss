@@ -1,0 +1,17 @@
+@import 'variables';
+
+$guss-webfonts-base-url: '//pasteup.guim.co.uk/fonts/';
+
+/**
+  * Use pasteup for deployed app. Use local folder, for local: '/bower_components/guss-webfonts/webfonts'
+  */
+//match: /\/\/pasteup\.guim\.co\.uk\/fonts\/0\.1\.0/g,
+//replacement: '/bower_components/guss-webfonts/webfonts'
+
+@import '../vendor/pasteup-palette/src/_palette.scss';
+@import '../vendor/guss-webfonts/src/_webfonts.scss';
+@import '../vendor/guss-typography/_typography.scss';
+
+@include guss-webfonts('Guardian Agate Sans 1 Web');
+@include guss-typography-defaults;
+

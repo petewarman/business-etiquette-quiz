@@ -1,0 +1,7 @@
+.sass-cache
+node_modules
+build
+dist
+src/vendor
+src/styles/main.css
+src/images
