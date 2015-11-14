@@ -1,7 +1,8 @@
 define([
+	'jquery',
 	'app',
-	'hbs!../templates/template'
 ],function(
+	$,
 	app,
 	template
 ){
@@ -22,12 +23,12 @@ define([
 	function onDataLoaded(data) {
 		data.rootPath = rootPath;
 
-		$(interactiveEl).append(template(data));
+		//$(interactiveEl).append(template(data));
 
 		app.init({
-			"interactiveEl": interactiveEl,
+			"baseEl": interactiveEl,
 			"rootPath": rootPath,
-			"assetSizes": data.assetSizes
+			"data": data
 		});
 	};
 

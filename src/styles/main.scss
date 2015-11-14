@@ -15,3 +15,11 @@ $guss-webfonts-base-url: '//pasteup.guim.co.uk/fonts/';
 @include guss-webfonts('Guardian Agate Sans 1 Web');
 @include guss-typography-defaults;
 
+.ups-interactive {
+	padding: 10px;
+
+	@import 'reset';
+	@import 'app';
+	@import 'thumb';
+	@import 'question';
+}

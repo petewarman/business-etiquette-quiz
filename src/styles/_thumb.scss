@@ -1,0 +1,32 @@
+.thumb {
+	position: relative;
+	width: calc(50% - #{ $gridGutter / 2 }px);
+	float: left;
+	margin-bottom: #{ $gridGutter }px;
+
+	&:nth-child(2n) {
+		float: right;
+	}
+}
+
+.thumb__image-holder {
+	
+}
+
+.thumb__image {
+	display: block;
+	max-width: 100%;
+}
+
+.thumb:hover .thumb__image {
+	opacity: 0.5;
+}
+
+.thumb__text {
+	position: absolute;
+	right: #{ $gridGutter }px;
+	bottom: #{ $gridGutter }px;
+	color: $color-white;
+	text-transform: uppercase;
+	line-height: 1;
+}

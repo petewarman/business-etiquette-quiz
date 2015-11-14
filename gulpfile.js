@@ -87,8 +87,8 @@ gulp.task('dist', ['clean-dist'], function(){
 });
 
 gulp.task('watch', function () {
-	gulp.watch(['./src/styles/*.scss'], ['sass']);
-	gulp.watch(['./src/scripts/*.js'], ['scripts']);
+	gulp.watch(['./src/styles/**/*.scss'], ['sass']);
+	gulp.watch(['./src/scripts/**/*.js'], ['scripts']);
 	gulp.watch(['./src/*.html'], ['html']);
 	gulp.watch(['./src/templates/*.hbs'], ['scripts']);
 	gulp.watch(['./src/boot.js'], ['bootjs']);

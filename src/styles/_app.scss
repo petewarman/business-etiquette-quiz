@@ -1,0 +1,28 @@
+.thumbs-container {
+	position: relative;
+	left: 0;
+	top: 0;
+	width: 100%;
+	transition: opacity 0.3s;
+}
+
+.detail-container {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	opacity: 0;
+	transition: opacity 0.3s;
+}
+
+&.question-selected {
+	.thumbs-container {
+		position: absolute;
+		opacity: 0;
+	}
+
+	.detail-container {
+		position: relative;
+		opacity: 1;
+	}
+}

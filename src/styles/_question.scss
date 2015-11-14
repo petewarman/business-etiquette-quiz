@@ -1,0 +1,76 @@
+.question {
+}
+
+.question__image-holder {
+}
+
+.question__image {
+	display: block;
+	max-width: 100%;
+}
+
+.question:hover .question__image {
+}
+
+.question__country {
+}
+
+.question__details {
+	border-top: 2px solid $color-yellow;
+	border-bottom: 2px solid $color-yellow;
+	padding: 10px 0;
+}
+
+.question__description {
+
+}
+
+.question__option-list {
+
+}
+
+.question__option {
+	padding: 5px 5px 5px 40px;
+	background: $color-grey-1;
+	border: 0;
+	display: block;
+	width: 100%;
+	text-align: left;
+	margin: 5px 0;
+	position: relative;
+	min-height: 40px;
+
+	&:before {
+		content: 'A';
+		display: block;
+		width: 30px;
+		height: 30px;
+		border-radius: 50%;
+		background: $color-grey-2;
+		position: absolute;
+		left: 5px;
+		top: 5px;
+		text-align: center;
+		line-height: 30px;
+	}
+
+	&:nth-child(2):before {
+		content: 'B';
+	}
+
+	&:nth-child(3):before {
+		content: 'C';
+	}
+
+	&.is-correct:before {
+		background: $color-green;
+	}
+
+	&.is-incorrect:before {
+		background: $color-red;
+	}
+}
+
+.question__answer {
+	display: none;
+}

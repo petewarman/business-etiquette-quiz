@@ -11,7 +11,14 @@ require.config({
     'underscore': '../vendor/underscore/underscore',
     'main': 'main',
     'app': 'app',
-    'hbs': '../vendor/require-handlebars-plugin/hbs'
+    'eventBus': 'eventBus',
+    'appView': './views/appView',
+    'questionsCollection': 'questionsCollection',
+    'questionModel': 'questionModel',
+    'thumbView': './views/thumbView',
+    'detailView': './views/detailView',
+    'hbs': '../vendor/require-handlebars-plugin/hbs',
+    'utils': 'utils'
   },
   hbs: { // optional
       'helpers': true,            // default: true

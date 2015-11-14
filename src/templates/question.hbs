@@ -1,0 +1,11 @@
+<div class="question__image-holder"><img src="{{ rootPath }}images/{{ imageFilename }}" alt="{{ imageAlt }}" class="question__image" /></div>
+<div class="question__country">{{ name }}</div>
+<div class="question__details">
+	<div class="question__description">{{ question }}</div>
+	<div class="question__option-list">
+		{{#each options}}
+		<button type="button" class="question__option">{{ this }}</button>
+		{{/each}}
+	</div>
+	<div class="question__answer"></div>
+</div>

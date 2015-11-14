@@ -1,48 +1,39 @@
 define([
-	'jquery',
-	'underscore'
+	'underscore',
+	'questionsCollection',
+	'appView'
 ], function(
-	$,
-	_
+	_,
+	QuestionsCollection,
+	AppView
 ) {
 	'use strict';
 
 	var app = {
 
 		"init": function(options) {
-
-			var defaults = {};
-
-			this.options = _.extend(defaults, options); 
-
-			this.getElementRefs();
-			this.addEventListeners();
+			this.options = options; 
+			this._questionsCollection = this.createQuestionsCollection(this.options.data.questions);
+			this._questionsCollection.setRootPath(options.rootPath);
+			this.view = this.createAppView();
+			this.options.baseEl.appendChild(this.view.el);
 		},
 
-	/* Set Up */
-
-		"getElementRefs": function() {
-			this.$container = $(this.options.containerSelector, this.options.interactiveEl);
+		"createQuestionsCollection": function(collectionData) {
+			return new QuestionsCollection(collectionData);
 		},
 
-		"addEventListeners": function (){
-			$(window).on('resize', _.debounce(this.onResize, 300));
+		"getQuestionsCollection": function() {
+			return this._questionsCollection;
 		},
 
-	/* Event Handlers */
-
-		"onResize": function(e) {
-			
-		},
-
+		"createAppView": function() {
+			return new AppView({
+				"questions": this.getQuestionsCollection()
+			});
+		}
 
 	};
-
-	_.bindAll(
-		app,
-		'init',
-		'onResize'
-	);
 
 	return app;
 
