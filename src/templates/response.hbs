@@ -1,0 +1,3 @@
+<strong class="response {{#if isCorrect}}response--correct{{else}}response--wrong{{/if}}">{{#if isCorrect}}Correct{{else}}Wrong{{/if}}</strong>
+{{#unless isCorrect}}<span class="response__correct-answer">Correct answer: {{ correctAnswerLetter }}.</span>{{/unless}}
+<span>{{ answer.copy }}</span>

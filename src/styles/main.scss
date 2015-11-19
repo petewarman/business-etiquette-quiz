@@ -16,10 +16,24 @@ $guss-webfonts-base-url: '//pasteup.guim.co.uk/fonts/';
 @include guss-typography-defaults;
 
 .ups-interactive {
-	padding: 10px;
+	margin: 10px;
+	position: relative;
+	font-family: 'Guardian Agate Sans 1 Web', sans-serif;
+
+	[role="button"],
+	button {
+		font-family: 'Guardian Agate Sans 1 Web', sans-serif;
+		cursor: pointer;
+		box-sizing: border-box;
+
+		&:focus {
+			outline: 0;
+			box-shadow: 0 0 3px rgba(0,0,0,0.75);
+		}
+	}
 
 	@import 'reset';
 	@import 'app';
 	@import 'thumb';
-	@import 'question';
+	@import 'detail';
 }

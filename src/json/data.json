@@ -4,34 +4,34 @@
 			"name": "China",
 			"imageFilename": "china.png",
 			"imageAlt": "Alt text",
-			"mapX": "60",
-			"mapY": "30",
-			"question": "Lorem ipsum",
+			"mapX": "82",
+			"mapY": "32",
+			"question": "You’re at a big trade show in Beijing hoping to find a distributor for your luxury brand, and things are going well. You’ve had a great chat with a potential Chinese customer and now’s the time to present her with your business card. Do you:",
 			"options": [
-				"dolor sit amet",
-				"consectetur adipiscing elit",
-				"sed do eiusmod tempor"
+				"take out a card out of your back pocket and write your mobile phone number on it",
+				"point out that paper-based business card are so old hat nowadays - is it OK if you just send her your details via your smartphone instead?",
+				"carefully remove your specially prepared Chinese business card from a silver case in your briefcase, then present it by holding it carefully in front of you, with both hands?"
 			],
 			"answer": {
-				"index": 0,
-				"copy": "Some answer copy"
+				"index": 2,
+				"copy": "You’ll find that across Asia, the presentation of business cards is taken very seriously. Don’t ever write on a business card, or, even worse, shove it in your back pocket. Offering a card casually from a back pocket or with one hand is seen as insulting – it indicates that you don’t really care about the relationship. So offer it with respect, politeness and humility – and, for extra kudos, get it translated."
 			}
 		},
 		{
 			"name": "Oman",
 			"imageFilename": "oman.png",
 			"imageAlt": "Alt text",
-			"mapX": "50",
-			"mapY": "60",
-			"question": "Lorem ipsum",
+			"mapX": "62",
+			"mapY": "52",
+			"question": "You’ve received an approach from a company in Oman via their UK agent, and you fly out to Muscat to meet them. You’re eager to get straight down to business but your contact seems more interested in small talk - how many children you have, whether you’ve visited Oman before and how Manchester United are doing. Should you:",
 			"options": [
-				"dolor sit amet",
-				"consectetur adipiscing elit",
-				"sed do eiusmod tempor"
+				"answer his questions then move on to talk about business, you only have a limited time in Muscat",
+				"answer, but don’t ask him anything - you don’t want to seem intrusive",
+				"respond in kind by asking him about his children, holidays, experience of the UK, favourite restaurants in Muscat, and so on, for the next 20 minutes or so"
 			],
 			"answer": {
-				"index": 0,
-				"copy": "Some answer copy"
+				"index": 2,
+				"copy": "It’s very rude not to spend a lot of time at the start of any meeting in the Middle East without the proper greetings - hello, how are you, how is your family, and so on. You might consider these invasive questions but politeness demands that you answer them. No matter how much of a rush you are in to get in and out, or to get to the point, you can never dispense with this initial greeting period."
 			}
 		},
 		{
@@ -39,101 +39,101 @@
 			"imageFilename": "germany.png",
 			"imageAlt": "Alt text",
 			"mapX": "50",
-			"mapY": "60",
-			"question": "Lorem ipsum",
+			"mapY": "35",
+			"question": "You’re desperate to work with a consultancy in Germany, but you’re not sure you can afford them. You’ve made them a good offer during a face-to-face meeting – now they say they’re ‘thinking about it’. How can you persuade them?",
 			"options": [
-				"dolor sit amet",
-				"consectetur adipiscing elit",
-				"sed do eiusmod tempor"
+				"write an impassioned email reiterating how passionate you are about their work and what a great opportunity it would be for them",
+				"write an email asking when they expect to make a decision, after all there are plenty of other consultancies you can approach",
+				"do nothing except send a polite thanks for the meeting. It’s best to wait and see."
 			],
 			"answer": {
-				"index": 0,
-				"copy": "Some answer copy"
+				"index": 2,
+				"copy": "Germans don’t like pushy business techniques, and they don't respond well to wild passionate appeals. They like to take their time when considering a request, so take a step back and let them think about it."
 			}
 		},
 		{
 			"name": "India",
 			"imageFilename": "india.png",
 			"imageAlt": "Alt text",
-			"mapX": "50",
-			"mapY": "60",
-			"question": "Lorem ipsum",
+			"mapX": "70",
+			"mapY": "52",
+			"question": "You’ve spent a year organising meetings for your buying trip to Chennai, India – but the managers you’re meeting seem distracted. They’re constantly answering the phone or chatting to employees who wander in while you’re trying to talk. How should you react?",
 			"options": [
-				"dolor sit amet",
-				"consectetur adipiscing elit",
-				"sed do eiusmod tempor"
+				"Stop talking and politely wait for your host to finish her conversation/call",
+				"Just carry on but wrap things up quickly as she clearly isn’t interested",
+				"Ask that she doesn’t respond to any distractions – what you’re saying is important"
 			],
 			"answer": {
 				"index": 0,
-				"copy": "answer a. Some answer copy"
+				"copy": "These kinds of interruptions are normal in India, as it’s seen as rude to ignore a phone call or a request. It’s not an indication that your host isn’t listening or is too busy."
 			}
 		},
 		{
 			"name": "Japan",
 			"imageFilename": "japan.png",
 			"imageAlt": "Alt text",
-			"mapX": "50",
-			"mapY": "60",
-			"question": "Lorem ipsum",
+			"mapX": "87",
+			"mapY": "42",
+			"question": "You are on your way to Japan for a business meeting but have caught a horrible cold. Should you:",
 			"options": [
-				"dolor sit amet",
-				"consectetur adipiscing elit",
-				"sed do eiusmod tempor"
+				"Go along anyway and don’t mention that you’re ill, you don’t want to cancel the meeting at such short notice",
+				"Go to the meeting and apologise for being ill",
+				"Cancel or rearrange the meeting"
 			],
 			"answer": {
-				"index": 0,
-				"copy": "answer a. Some answer copy"
+				"index": 2,
+				"copy": "Turning up to a business meeting with a cold would be seen as insulting in Japan and could end your chances of winning a contract. Blowing your nose is also a no no. If you have a cold, cancel the meeting."
 			}
 		},
 		{
-			"name": "London",
+			"name": "Nigerian in London",
 			"imageFilename": "london.png",
 			"imageAlt": "Alt text",
-			"mapX": "50",
-			"mapY": "60",
-			"question": "Lorem ipsum",
+			"mapX": "47",
+			"mapY": "33",
+			"question": "A Nigerian company director is in London, and you’re meeting for an informal chat about how your company could expand into Nigerian marketplaces. How should you address him when you meet him for the first time?",
 			"options": [
-				"dolor sit amet",
-				"consectetur adipiscing elit",
-				"sed do eiusmod tempor"
+				"By his title, whatever that is – Professor, Dr, Your Excellency – and his surname",
+				"By his first name, to establish rapport",
+				"By his full name but without the title - titles sound too formal, and you want to appear friendly"
 			],
 			"answer": {
 				"index": 0,
-				"copy": "answer a. Some answer copy"
+				"copy": "Titles are important in Nigeria, so make sure you check exactly what they are."
 			}
 		},
 		{
 			"name": "Malaysia",
 			"imageFilename": "malaysia.png",
 			"imageAlt": "Alt text",
-			"mapX": "50",
-			"mapY": "60",
-			"question": "Lorem ipsum",
+			"mapX": "78",
+			"mapY": "59",
+			"question": "You’re meeting with the representative of a big retail chain across Malaysia. He invites you for lunch at a Lebanese restaurant to talk about your products. Which hand do you use to eat your pita bread?",
 			"options": [
-				"dolor sit amet",
-				"consectetur adipiscing elit",
-				"sed do eiusmod tempor"
+				"the left hand",
+				"the right hand",
+				"either right or left hand is fine"
 			],
 			"answer": {
-				"index": 0,
-				"copy": "answer a. Some answer copy"
+				"index": 1,
+				"copy": "It’s fine to use your right hand, but don’t ever use your left hand as it’s seen as the dirty hand. (It’s good to get used to this, as it’s the case in most Muslim countries.)"
 			}
 		},
 		{
 			"name": "Russia",
 			"imageFilename": "russia.png",
 			"imageAlt": "Alt text",
-			"mapX": "50",
-			"mapY": "60",
-			"question": "Lorem ipsum",
+			"mapX": "62",
+			"mapY": "27",
+			"question": "You’ve organised a meeting with a possible Russian partner and arranged to meet the team at their headquarters in Moscow. You arrive at reception bang on time – but half an hour later, you’re still sitting there. Do you:",
 			"options": [
-				"dolor sit amet",
-				"consectetur adipiscing elit",
-				"sed do eiusmod tempor"
+				"just wait until your meeting participants show up. And don’t mention their lateness",
+				"wait and when they do arrive, ask politely whether they had been stuck in traffic",
+				"tell the receptionist that you’re just going to get a coffee and go for a wander around to pass the time – after all, if your participants are late, it won’t matter if you are, too"
 			],
 			"answer": {
 				"index": 0,
-				"copy": "answer a. Some answer copy"
+				"copy": "It’s fine for Russians to be late - often, that lateness is a subtle test to see how patient you are. But it’s not OK for you to be late too, or for you to criticise their timekeeping."
 			}
 		}
 	]

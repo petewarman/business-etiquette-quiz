@@ -7,12 +7,13 @@ define([
 ) {
 	'use strict';
 
-	function QuestionsCollection(questionsData) {
+	function QuestionsCollection(questionsData, options) {
 
 		if (!(this instanceof QuestionsCollection)) {
 			return new QuestionsCollection(questionsData);
 		}
 
+		this.eventBus = options.eventBus;
 		this.models = [];
 
 		if(questionsData){
@@ -22,8 +23,31 @@ define([
 
 	QuestionsCollection.prototype = {
 
+		"getNextUnansweredQuestion": function() {
+			var ind = this.models.indexOf(this.getSelectedQuestion()) + 1;
+
+			for(var i=0; i<this.models.length; i++) {
+
+				if(ind >= this.models.length) {
+					ind = 0;
+				}
+
+				if(this.models[ind].get('state') === 'unanswered') {
+					return this.models[ind];
+				} else {
+					ind++;
+				}
+
+			}
+
+			return null;
+
+		},
+
 		"addModel": function(modelData) {
-			this.models.push(new Model(modelData));
+			this.models.push(new Model(modelData, {
+				'eventBus': this.eventBus
+			}));
 		},
 
 		"getUnansweredQuestions": function() {
@@ -33,6 +57,23 @@ define([
 		"setRootPath": function(path) {
 			this.models.forEach(function(model){
 				model.set('rootPath', path);
+			});
+		},
+
+		"setSelectedQuestion": function(selectedModel) {
+			var oldSelected = this.getSelectedQuestion();
+
+			if(oldSelected !== selectedModel) {
+				this.models.forEach(function(model){
+					model.set('selected', (selectedModel === model));
+					model.set('oldSelected', (oldSelected === model));
+				});
+			}
+		},
+
+		"getSelectedQuestion": function() {
+			return _.find(this.models, function(model){
+				return model.get('selected');
 			});
 		}
 

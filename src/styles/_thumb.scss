@@ -1,11 +1,49 @@
 .thumb {
-	position: relative;
-	width: calc(50% - #{ $gridGutter / 2 }px);
-	float: left;
-	margin-bottom: #{ $gridGutter }px;
+	background: $color-yellow;
+	position: absolute;
+	left: 0;
+	top: 0;
+	transition: all 0.4s;
 
-	&:nth-child(2n) {
-		float: right;
+	&.is-answered {
+		background: $color-black;
+
+		&:after {
+			content: '';
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+			width: 50%;
+			height: 50%;
+			background: url(../icons/tick.svg) center center no-repeat;
+			background-size: contain;
+		}
+	}
+
+}
+
+$delay-step: 0.05s;
+
+@for $i from 1 through 8 {
+	.thumb:nth-child(#{$i}) { 
+		transition-delay: $delay-step * $i; 
+
+		.thumb__image {
+			transition-delay: 0s, #{$delay-step * $i}; 
+		}
+	}
+}
+
+&.question-selected {
+	@for $i from 1 through 8 {
+		.thumb:nth-child(#{9 - $i}) { 
+			transition-delay: $delay-step * $i; 
+
+			.thumb__image {
+				transition-delay: 0s, #{$delay-step * $i}; 
+			}
+		}
 	}
 }
 
@@ -16,10 +54,14 @@
 .thumb__image {
 	display: block;
 	max-width: 100%;
+	-webkit-backface-visibility: hidden;
+	transition: opacity 0.3s, border-radius 0.4s;
 }
 
-.thumb:hover .thumb__image {
-	opacity: 0.5;
+.thumb:hover .thumb__image,
+.thumb.is-selected .thumb__image, 
+.thumb.is-answered .thumb__image{
+	opacity: 0.23;
 }
 
 .thumb__text {
@@ -29,4 +71,32 @@
 	color: $color-white;
 	text-transform: uppercase;
 	line-height: 1;
+	text-shadow: 0 0 1px #000, 0 0 1px #000, 0 0 1px #000, 0 0 1px #000;
+}
+
+&.question-selected,
+&.map-view {
+	.thumb {
+		width: 30px;
+		border-radius: 50%;
+		overflow: hidden;
+	}
+
+	.thumb__image {
+		border-radius: 50%;
+	}
+
+	.thumb__text {
+		display: none;
+	}
+
+}
+
+&.map-view {
+	background: url(../icons/map.svg) center center no-repeat;
+	background-size: contain;
+
+	.thumb {
+		margin: -15px 0 0 -15px;
+	}
 }

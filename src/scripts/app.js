@@ -1,11 +1,13 @@
 define([
 	'underscore',
 	'questionsCollection',
-	'appView'
+	'appView',
+	'eventBus'
 ], function(
 	_,
 	QuestionsCollection,
-	AppView
+	AppView,
+	EventBus
 ) {
 	'use strict';
 
@@ -13,14 +15,18 @@ define([
 
 		"init": function(options) {
 			this.options = options; 
+			this.eventBus = new EventBus();
 			this._questionsCollection = this.createQuestionsCollection(this.options.data.questions);
 			this._questionsCollection.setRootPath(options.rootPath);
 			this.view = this.createAppView();
 			this.options.baseEl.appendChild(this.view.el);
+			this.view.positionThumbs();
 		},
 
 		"createQuestionsCollection": function(collectionData) {
-			return new QuestionsCollection(collectionData);
+			return new QuestionsCollection(collectionData, {
+				'eventBus': this.eventBus
+			});
 		},
 
 		"getQuestionsCollection": function() {
@@ -29,7 +35,8 @@ define([
 
 		"createAppView": function() {
 			return new AppView({
-				"questions": this.getQuestionsCollection()
+				"questions": this.getQuestionsCollection(),
+				"eventBus": this.eventBus
 			});
 		}
 

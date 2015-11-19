@@ -1,64 +1,87 @@
 define([
 	'underscore',
+	'baseView',
 	'hbs!../templates/thumb',
-	'eventBus'
+	'utils'
 ], function(
 	_,
+	BaseView,
 	template,
-	EventBus
+	Utils
 ) {
 	'use strict';
 
-	function QuestionView(options) {
+	function ThumbView(options) {
 
-		if (!(this instanceof QuestionView)) {
-			return new QuestionView(options);
+		if (!(this instanceof ThumbView)) {
+			return new ThumbView(options);
 		}
 
-		this.model = options.model;
-		this.bindContext();
-		this.render();
-		this.getUiRefs();
-		this.addEventListeners();
+		BaseView.call(this, options);
+
+		this.el.setAttribute('role', 'button');
+		this.el.setAttribute('tabindex', '0');
 	}
 
+	ThumbView.prototype = _.extend({}, BaseView.prototype, {
 
-	QuestionView.prototype = {
+		"template": template,
+
+		"className": "thumb",
 
 		"bindContext": function() {
 			_.bindAll(this, 'onElClick');
 		},
 
-		"render": function() {
-			this.el = document.createElement('div');
-			this.el.className = 'thumb';
-			this.el.innerHTML = template(this.model.properties);
+		"modelEvents": {
+			'change:selected': 'onChangeSelected',
+			'change:state': 'onChangeState'
 		},
 
-		"getUiRefs": function() {
-			this.ui = {};
-			this.ui.image = this.el.querySelector('.question__image');
-			this.ui.country = this.el.querySelector('.question__country');
-			this.ui.description = this.el.querySelector('.question__description');
-			this.ui.optionList = this.el.querySelector('.question__options-list');
-			this.ui.options = this.el.querySelectorAll('.question__option');
-			this.ui.answer = this.el.querySelector('.question__answer');
+		"uiRefs": {
+			'image': '.question__image',
+			'country': '.question__country',
+			'description': '.question__description',
+			'optionList': '.question__options-list',
+			'options': '.question__option',
+			'answer': '.question__answer'
 		},
 
-		"addEventListeners": function() {
-			this.el.addEventListener('click', this.onElClick);
-		},
-
-		"removeEventListeners": function() {
-			this.el.removeEventListener('click', this.onElClick);
+		"uiEvents": {
+			'click': 'onElClick'
 		},
 
 		"onElClick": function(e) {
-			EventBus.trigger('questionSelected', this.model);
+			this.eventBus.trigger('questionSelected', this.model);
+		},
+
+		"onChangeSelected": function() {
+			if(this.model.get('selected')) {
+				Utils.addClass(this.el, 'is-selected');
+			} else {
+				Utils.removeClass(this.el, 'is-selected');
+			}
+		},
+
+		"onChangeState": function() {
+			if(this.model.get('state') === 'answered') {
+				this.removeUiEventListeners();
+
+				this.el.removeAttribute('role');
+				this.el.removeAttribute('tabindex');
+
+				if(this.model.get('isCorrect')) {
+					Utils.addClass(this.el, 'is-answered');
+					Utils.addClass(this.el, 'is-answered--correct');
+				} else {
+					Utils.addClass(this.el, 'is-answered');
+					Utils.addClass(this.el, 'is-answered--wrong');
+				}
+			}
 		}
 
-	};
+	});
 
-	return QuestionView;
+	return ThumbView;
 
 })

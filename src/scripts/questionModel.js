@@ -1,11 +1,13 @@
 define([
-	'underscore'
+	'underscore',
+	'eventBus'
 ], function(
-	_
+	_,
+	EventBus
 ) {
 	'use strict';
 
-	function Question(questionData){
+	function Question(questionData, options){
 
 		if (!(this instanceof Question)) {
 			return new Question(questionData);
@@ -16,21 +18,36 @@ define([
 			"answerGiven": null
 		};
 
+		this.options = options;
 		this.properties = _.extend(defaults, questionData); 
+		this._listeners = [];
 
 	}
 
-	Question.prototype.get = function(property) {
-		return this.properties[property];
-	};
+	Question.prototype = _.extend({
 
-	Question.prototype.set = function(property, value) {
-		this.properties[property] = value;
-	};
+		"get": function(property) {
+			return this.properties[property];
+		},
 
-	Question.prototype.onAnswerSelected = function(answer) {
+		"set": function(property, value) {
+			if(this.properties[property] !== value) {
+				this.properties[property] = value;
+				this.trigger('change:'+ property);
+			}
+		},
 
-	};
+		"onAnswerSelected": function(answer) {
+			var correctAnswer = this.get('answer').index;
+
+			this.set('answerGiven', answer);
+			this.set('isCorrect', (answer === correctAnswer));
+			this.set('correctAnswerLetter', ['A','B','C'][correctAnswer]);
+			this.set('state', 'answered');
+
+		}
+
+	}, EventBus.prototype);
 
 	return Question;
 

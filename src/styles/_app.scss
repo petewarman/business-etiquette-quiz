@@ -1,28 +1,91 @@
 .thumbs-container {
-	position: relative;
-	left: 0;
-	top: 0;
-	width: 100%;
 	transition: opacity 0.3s;
 }
 
 .detail-container {
-	position: absolute;
-	left: 0;
-	top: 0;
-	width: 100%;
 	opacity: 0;
+	overflow: hidden;
 	transition: opacity 0.3s;
 }
 
+.close-detail {
+	position: absolute;
+	right: 0;
+	top: 0;
+	z-index: 1;
+	height: 40px;
+	width: 60px;
+	background: url(../icons/map.svg) center center no-repeat;
+	background-size: contain;
+	border: 0;
+	margin: 0;
+	padding: 0;
+	text-indent: 60px;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.next-question {
+	border: 0;
+	background: $color-yellow;
+	color: $button-text-color;
+	padding: 5px 10px;
+	border-radius: 13px;
+	font-size: 16px;
+	line-height: 1;
+	font-weight: bold;
+	margin-top: 10px;
+}
+
+.close-detail,
+.next-question {
+	visibility: hidden;
+	opacity: 0;
+	transition: opacity 0.3s 0s, visibility 0s 0.3s;
+}
+
 &.question-selected {
+	position: relative;
+	height: auto !important;
+
 	.thumbs-container {
-		position: absolute;
-		opacity: 0;
 	}
 
 	.detail-container {
-		position: relative;
 		opacity: 1;
+	}
+
+	.close-detail,
+	.next-question {
+		visibility: visible;
+		opacity: 1;
+		transition: opacity 0.3s 0.5s, visibility 0s 0.5s;
+	}
+}
+
+@media screen and (max-width: ($bp-desktop - 1)) {
+	&.question-selected {
+
+		.thumbs-container {
+			opacity: 0;
+			visibility: hidden;
+		}
+
+	}
+}
+
+@media screen and (min-width: $bp-desktop) {
+	.next-question {
+		position: absolute;
+		right: 0;
+		top: 100%;
+		margin-top: -36px;
+	}
+
+	.detail-container {
+		//position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
 	}
 }

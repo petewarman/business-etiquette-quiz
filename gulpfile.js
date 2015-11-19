@@ -31,7 +31,7 @@ gulp.task('sass', function () {
 });
 
 gulp.task('icons', function(){
-	gulp.src('./src/icons/*')
+	gulp.src('./src/icons/**')
 		.pipe(gulp.dest('./' + options.env + '/icons'));
 });
 

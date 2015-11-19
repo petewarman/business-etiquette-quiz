@@ -4,7 +4,7 @@
 	<div class="question__description">{{ question }}</div>
 	<div class="question__option-list">
 		{{#each options}}
-		<button type="button" class="question__option">{{ this }}</button>
+		<div role="button" tabindex="0" class="question__option">{{ this }}</div>
 		{{/each}}
 	</div>
 	<div class="question__answer"></div>

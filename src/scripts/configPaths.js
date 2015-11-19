@@ -7,16 +7,18 @@ require.config({
     }
   },
   paths: {
-    'jquery': '../vendor/jquery/dist/jquery',
     'underscore': '../vendor/underscore/underscore',
     'main': 'main',
     'app': 'app',
     'eventBus': 'eventBus',
+    'baseModel': 'baseModel',
+    'baseView': './views/baseView',
     'appView': './views/appView',
     'questionsCollection': 'questionsCollection',
     'questionModel': 'questionModel',
     'thumbView': './views/thumbView',
     'detailView': './views/detailView',
+    'resultsView': './views/resultsView',
     'hbs': '../vendor/require-handlebars-plugin/hbs',
     'utils': 'utils'
   },

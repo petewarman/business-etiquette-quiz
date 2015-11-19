@@ -42,6 +42,6 @@ define(['underscore'], function(_) {
 
 	};
 
-	return new EventBus;
+	return EventBus;
 
 })

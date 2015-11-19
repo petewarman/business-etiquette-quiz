@@ -1,8 +1,6 @@
 define([
-	'jquery',
 	'app',
 ],function(
-	$,
 	app,
 	template
 ){
@@ -13,14 +11,20 @@ define([
 	var rootPath;
 
 	function requestData() {
-		$.getJSON(rootPath + 'json/data.json')
-			.done(onDataLoaded)
-			.fail(function(){
-				console.log('failed to load data.json', arguments);
-			});
+		// $.getJSON(rootPath + 'json/data.json')
+		// 	.done(onDataLoaded)
+		// 	.fail(function(){
+		// 		console.log('failed to load data.json', arguments);
+		// 	});
+		var oReq = new XMLHttpRequest();
+		oReq.addEventListener("load", onDataLoaded);
+		oReq.open("GET", rootPath + 'json/data.json');
+		oReq.send();
 	};
 
-	function onDataLoaded(data) {
+	function onDataLoaded() {
+		var data = JSON.parse(this.responseText);
+
 		data.rootPath = rootPath;
 
 		//$(interactiveEl).append(template(data));
