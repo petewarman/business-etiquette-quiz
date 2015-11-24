@@ -129,13 +129,11 @@ define([
 		},
 
 		"startIntro": function() {
-			console.log('startIntro');
 			this.state = 'map';
 			this.positionThumbs();
 			this.thumbIntrosCompleted = 0;
 			Utils.removeClass(this.el, 'intro');
 			if(!Utils.supportsTransitions()) {
-				console.log('no transition support detected');
 				this.displayGrid();
 			}
 		},
