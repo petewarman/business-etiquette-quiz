@@ -13,6 +13,7 @@ gulp.task('connect', function() {
 	$.connect.server({
 		root: 'build',
 		port: '5000',
+		host: '0.0.0.0',
 		livereload: false
 	});
 });

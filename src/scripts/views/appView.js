@@ -1,5 +1,4 @@
 define([
-	'underscore',
 	'hbs!../templates/app',
 	'baseView',
 	'thumbView',
@@ -7,7 +6,6 @@ define([
 	'resultsView',
 	'utils'
 ], function(
-	_,
 	template,
 	BaseView,
 	ThumbView,
@@ -16,6 +14,8 @@ define([
 	Utils
 ) {
 	'use strict';
+
+	var prototype = Object.create(BaseView.prototype);
 
 	function AppView(options) {
 
@@ -35,17 +35,21 @@ define([
 		this.state = 'map';
 
 		this.questionsCollection = options.questions;
+		this.resultsCollection = options.results;
+		this.rootPath = options.rootPath;
+		this.shareCopy = options.shareCopy;
 		this.renderThumbs();
 		this.renderDetails();
 		this.addEventBusListeners();
-		this.positionThumbs();
 
-		window.addEventListener('resize', _.debounce(this.onResize, 200));
+		setTimeout(this.startIntro, 500);
+
+		window.addEventListener('resize', Utils.debounce(this.onResize, 200));
 	}
 
-	AppView.prototype = _.extend({}, BaseView.prototype, {
+	AppView.prototype = Utils.extend(prototype, {
 
-		"className": "ups-interactive",
+		"className": "ups-interactive intro",
 
 		"template": template,
 
@@ -74,17 +78,66 @@ define([
 		},
 
 		"bindContext": function() {
-			_.bindAll(this, 'onResize', 'onNextButtonClick', 'onCloseButtonClick');
+			this.onResize = this.onResize.bind(this);
+			this.startIntro = this.startIntro.bind(this);
 		},
 
 		"addEventBusListeners": function() {
 			this.eventBus.on('questionSelected', this.displayDetail, this);
-			this.eventBus.on('nextQuestion', this.showNextUnansweredQuestion, this);
-			this.eventBus.on('hideDetail', this.hideDetail, this);
+			this.eventBus.on('thumbIntroComplete', this.onThumbIntroComplete, this);
+			this.eventBus.on('restartQuiz', this.restartQuiz, this);
+			this.eventBus.on('answerSelected', this.onAnswerSelected, this);
+		},
+
+		"onAnswerSelected": function() {
+			if(this.questionsCollection.getUnansweredQuestionCount() === 0) {
+				this.setAsLastQuestion();
+			}
+
+			this.activateButton(this.ui.nextQuestionButton[0]);
+		},
+
+		"activateButton": function(button) {
+			Utils.addClass(button, 'is-active');
+			button.setAttribute('role', 'button');
+			button.setAttribute('tabindex', '0');
+		},
+
+		"deactivateButton": function(button) {
+			Utils.removeClass(button, 'is-active');
+			button.removeAttribute('role');
+			button.removeAttribute('tabindex');
+		},
+
+		"restartQuiz": function() {
+			this.questionsCollection.reset();
+			this.displayGrid();
+		},
+
+		"onThumbIntroComplete": function(thumbModel) {
+			this.thumbIntrosCompleted++;
+
+			if(this.thumbIntrosCompleted >= this.questionsCollection.models.length) {
+				if(this.state === 'map'){
+					this.displayGrid();
+				}
+			}
 		},
 
 		"onResize": function() {
 			this.positionThumbs();
+		},
+
+		"startIntro": function() {
+			console.log('startIntro');
+			this.state = 'map';
+			this.positionThumbs();
+			this.thumbIntrosCompleted = 0;
+			Utils.removeClass(this.el, 'intro');
+			if(!Utils.supportsTransitions()) {
+				console.log('no transition support detected');
+				this.displayGrid();
+			}
 		},
 
 		"renderThumbs": function() {
@@ -125,26 +178,34 @@ define([
 				case 'grid':
 					Utils.removeClass(this.el, 'question-selected');
 					Utils.removeClass(this.el, 'map-view');
+					Utils.removeClass(this.el, 'intro');
+					Utils.removeClass(this.el, 'results-view');
 					this.positionThumbsAsGrid();
 					break;
 				case 'map':
-					Utils.removeClass(this.el, 'question-selected');
 					Utils.addClass(this.el, 'map-view');
+					Utils.removeClass(this.el, 'question-selected');
+					Utils.removeClass(this.el, 'results-view');
 					this.positionThumbsAsMap();
 					break;
 				case 'detail':
 					Utils.addClass(this.el, 'question-selected');
+					Utils.removeClass(this.el, 'results-view');
 					Utils.removeClass(this.el, 'map-view');
+					Utils.removeClass(this.el, 'intro');
 					this.positionThumbsAsFooter();
 					break;
-				case 'finished':
-					this.hideThumbs();
+				case 'results':
+					Utils.addClass(this.el, 'results-view');
+					Utils.removeClass(this.el, 'question-selected');
+					Utils.removeClass(this.el, 'map-view');
+					Utils.removeClass(this.el, 'intro');
 			}
 		},
 
 		"positionThumbsAsMap": function() {
 			var containerWidth = this.ui.thumbsContainer.el.getBoundingClientRect().width,
-				thumbSize = 36,
+				thumbSize = 2,
 				containerHeight = containerWidth * 0.573554933;
 
 			this.el.style.height = containerHeight + 'px';
@@ -156,7 +217,7 @@ define([
 
 				thumbView.el.style.top = top + '%';
 				thumbView.el.style.left = left + '%';
-				thumbView.el.style.width = thumbSize + 'px';
+				thumbView.el.style.width = thumbSize + '%';
 
 			}, this);
 		},
@@ -177,6 +238,7 @@ define([
 				thumbView.el.style.top = top + 'px';
 				thumbView.el.style.left = left + 'px';
 				thumbView.el.style.width = thumbSize + 'px';
+				thumbView.updateBox(thumbSize);
 
 			}, this);
 		},
@@ -212,14 +274,25 @@ define([
 		},
 
 		"showResults": function(){
-			//this.emptyRegion(this.ui.detailContainer);
+			this.emptyRegion(this.ui.resultsContainer);
+
+			var score = this.questionsCollection.getCorrectAnswerCount();
+			var resultModel = this.resultsCollection.getResultModelByScore(score);
 
 			var view = new ResultsView({
-				"eventBus": this.eventBus
+				"model": resultModel,
+				"score": score,
+				"questionCount": this.questionsCollection.models.length,
+				"eventBus": this.eventBus,
+				"rootPath": this.rootPath,
+				"shareCopy": this.shareCopy
 			});
 
 			this.ui.resultsContainer.view = view;
 			this.ui.resultsContainer.el.appendChild(view.el);
+			this.state = 'results';
+			this.positionThumbs();
+			this.questionsCollection.setSelectedQuestion();
 		},
 
 		"emptyRegion": function(region) {
@@ -233,30 +306,33 @@ define([
 		},
 
 		"displayDetail": function(questionModel) {
-			Utils.addClass(this.el, 'question-selected');
-			Utils.removeClass(this.el, 'map-view');
-			this.state = 'detail';
-			this.positionThumbs();
-			this.questionsCollection.setSelectedQuestion(questionModel);
-			//this.renderDetail(questionModel);
+			if(this.state !== 'map') {
+				this.state = 'detail';
+				this.positionThumbs();
+				this.activateButton(this.ui.closeDetailButton[0]);
+				this.questionsCollection.setSelectedQuestion(questionModel);
+			}
 		},
 
-		"hideDetail": function() {
-			Utils.removeClass(this.el, 'question-selected');
-			Utils.removeClass(this.el, 'map-view');
+		"displayGrid": function() {
 			this.state = 'grid';
 			this.positionThumbs();
+			this.deactivateButton(this.ui.nextQuestionButton[0]);
 			this.questionsCollection.setSelectedQuestion();
-			//this.emptyRegion(this.ui.detailContainer);
 		},
 
-
 		"onNextButtonClick": function() {
+			this.deactivateButton(this.ui.nextQuestionButton[0]);
 			this.showNextUnansweredQuestion();
 		},
 
 		"onCloseButtonClick": function() {
-			this.hideDetail();
+			this.displayGrid();
+		},
+
+		"setAsLastQuestion": function() {
+			this.ui.nextQuestionButton[0].textContent = 'Finished';
+			this.deactivateButton(this.ui.closeDetailButton[0]);
 		}
 
 	});

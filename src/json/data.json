@@ -2,10 +2,11 @@
 	"questions": [
 		{
 			"name": "China",
-			"imageFilename": "china.png",
+			"strokeDashoffset": "22",
+			"imageFilename": "china.jpg",
 			"imageAlt": "Alt text",
-			"mapX": "82",
-			"mapY": "32",
+			"mapX": "79",
+			"mapY": "48",
 			"question": "You’re at a big trade show in Beijing hoping to find a distributor for your luxury brand, and things are going well. You’ve had a great chat with a potential Chinese customer and now’s the time to present her with your business card. Do you:",
 			"options": [
 				"take out a card out of your back pocket and write your mobile phone number on it",
@@ -19,10 +20,11 @@
 		},
 		{
 			"name": "Oman",
-			"imageFilename": "oman.png",
+			"strokeDashoffset": "20",
+			"imageFilename": "oman.jpg",
 			"imageAlt": "Alt text",
-			"mapX": "62",
-			"mapY": "52",
+			"mapX": "65",
+			"mapY": "54.5",
 			"question": "You’ve received an approach from a company in Oman via their UK agent, and you fly out to Muscat to meet them. You’re eager to get straight down to business but your contact seems more interested in small talk - how many children you have, whether you’ve visited Oman before and how Manchester United are doing. Should you:",
 			"options": [
 				"answer his questions then move on to talk about business, you only have a limited time in Muscat",
@@ -36,10 +38,11 @@
 		},
 		{
 			"name": "Germany",
-			"imageFilename": "germany.png",
+			"strokeDashoffset": "29",
+			"imageFilename": "germany.jpg",
 			"imageAlt": "Alt text",
-			"mapX": "50",
-			"mapY": "35",
+			"mapX": "50.8",
+			"mapY": "37.2",
 			"question": "You’re desperate to work with a consultancy in Germany, but you’re not sure you can afford them. You’ve made them a good offer during a face-to-face meeting – now they say they’re ‘thinking about it’. How can you persuade them?",
 			"options": [
 				"write an impassioned email reiterating how passionate you are about their work and what a great opportunity it would be for them",
@@ -53,15 +56,16 @@
 		},
 		{
 			"name": "India",
-			"imageFilename": "india.png",
+			"strokeDashoffset": "20",
+			"imageFilename": "india.jpg",
 			"imageAlt": "Alt text",
-			"mapX": "70",
-			"mapY": "52",
+			"mapX": "71.5",
+			"mapY": "55.5",
 			"question": "You’ve spent a year organising meetings for your buying trip to Chennai, India – but the managers you’re meeting seem distracted. They’re constantly answering the phone or chatting to employees who wander in while you’re trying to talk. How should you react?",
 			"options": [
-				"Stop talking and politely wait for your host to finish her conversation/call",
-				"Just carry on but wrap things up quickly as she clearly isn’t interested",
-				"Ask that she doesn’t respond to any distractions – what you’re saying is important"
+				"Stop talking and politely wait for your host to finish his conversation/call",
+				"Just carry on but wrap things up quickly as he clearly isn’t interested",
+				"Ask that he doesn’t respond to any distractions – what you’re saying is important"
 			],
 			"answer": {
 				"index": 0,
@@ -70,10 +74,11 @@
 		},
 		{
 			"name": "Japan",
-			"imageFilename": "japan.png",
+			"strokeDashoffset": "22",
+			"imageFilename": "japan.jpg",
 			"imageAlt": "Alt text",
-			"mapX": "87",
-			"mapY": "42",
+			"mapX": "88",
+			"mapY": "44.9",
 			"question": "You are on your way to Japan for a business meeting but have caught a horrible cold. Should you:",
 			"options": [
 				"Go along anyway and don’t mention that you’re ill, you don’t want to cancel the meeting at such short notice",
@@ -87,10 +92,11 @@
 		},
 		{
 			"name": "Nigerian in London",
-			"imageFilename": "london.png",
+			"strokeDashoffset": "53",
+			"imageFilename": "london.jpg",
 			"imageAlt": "Alt text",
-			"mapX": "47",
-			"mapY": "33",
+			"mapX": "48",
+			"mapY": "36.5",
 			"question": "A Nigerian company director is in London, and you’re meeting for an informal chat about how your company could expand into Nigerian marketplaces. How should you address him when you meet him for the first time?",
 			"options": [
 				"By his title, whatever that is – Professor, Dr, Your Excellency – and his surname",
@@ -104,10 +110,11 @@
 		},
 		{
 			"name": "Malaysia",
-			"imageFilename": "malaysia.png",
+			"strokeDashoffset": "30",
+			"imageFilename": "malaysia.jpg",
 			"imageAlt": "Alt text",
-			"mapX": "78",
-			"mapY": "59",
+			"mapX": "80",
+			"mapY": "63.8",
 			"question": "You’re meeting with the representative of a big retail chain across Malaysia. He invites you for lunch at a Lebanese restaurant to talk about your products. Which hand do you use to eat your pita bread?",
 			"options": [
 				"the left hand",
@@ -121,10 +128,11 @@
 		},
 		{
 			"name": "Russia",
-			"imageFilename": "russia.png",
+			"strokeDashoffset": "24",
+			"imageFilename": "russia.jpg",
 			"imageAlt": "Alt text",
-			"mapX": "62",
-			"mapY": "27",
+			"mapX": "58",
+			"mapY": "33",
 			"question": "You’ve organised a meeting with a possible Russian partner and arranged to meet the team at their headquarters in Moscow. You arrive at reception bang on time – but half an hour later, you’re still sitting there. Do you:",
 			"options": [
 				"just wait until your meeting participants show up. And don’t mention their lateness",
@@ -136,5 +144,49 @@
 				"copy": "It’s fine for Russians to be late - often, that lateness is a subtle test to see how patient you are. But it’s not OK for you to be late too, or for you to criticise their timekeeping."
 			}
 		}
-	]
+	],
+	"results": [
+		{
+			"scores": [0, 1, 2],
+			"title": "Must try harder",
+			"copy": "You've let yourself down, lorem ipsum"
+		},
+		{
+			"scores": [3, 4, 5],
+			"title": "Not bad",
+			"copy": "Kinda middling: could do a bit better, lorem ipsum"
+		},
+		{
+			"scores": [6, 7, 8],
+			"title": "You're a business etiquette expert",
+			"copy": "Well done, lorem ipsum"
+		}
+	],
+	"shareCopy": {
+		"facebook": {
+			"display": "popup",
+			"app_id": "741666719251986",
+			"link": "http://www.theguardian.com",
+			"picture": "london.jpg",
+			"redirect_uri": "http://www.theguardian.com",
+			"name": "Mind your manners",
+			"caption": "Mind your manners",
+			"description": "How much do you know about international business etiquette? Take the test"
+		},
+		"twitter": {
+			"text": "Mind your manners. How much do you know about international business etiquette? Take the test",
+			"source": "http://www.theguardian.com"
+		},
+		"linkedin": {
+			"title": "Mind your manners.",
+			"summary": "How much do you know about international business etiquette? Take the test",
+			"source": "http://www.theguardian.com",
+			"mini": "true",
+			"url": "http://www.theguardian.com"
+		},
+		"email": {
+			"subject": "Mind your manners",
+			"body": "How much do you know about international business etiquette? Take the test"
+		}
+	}
 }

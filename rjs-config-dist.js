@@ -11,7 +11,7 @@
 	inlineText: true,
 	name: '../vendor/almond/almond',
 	out: 'dist/scripts/main.js',
-	generateSourceMaps: true,
+	generateSourceMaps: false,
 	preserveLicenseComments: false,
 	include: ['main'],
 	wrap: {

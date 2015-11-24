@@ -1,8 +1,6 @@
 define([
-	'underscore',
 	'questionModel'
 ], function(
-	_,
 	Model
 ) {
 	'use strict';
@@ -44,14 +42,22 @@ define([
 
 		},
 
+		"getUnansweredQuestionCount": function() {
+			return this.models.filter(function(model){
+				return model.get('state') === 'unanswered';
+			}).length;
+		},
+
 		"addModel": function(modelData) {
 			this.models.push(new Model(modelData, {
 				'eventBus': this.eventBus
 			}));
 		},
 
-		"getUnansweredQuestions": function() {
-
+		"reset": function() {
+			this.models.forEach(function(model){
+				model.reset();
+			});
 		},
 
 		"setRootPath": function(path) {
@@ -63,7 +69,7 @@ define([
 		"setSelectedQuestion": function(selectedModel) {
 			var oldSelected = this.getSelectedQuestion();
 
-			if(oldSelected !== selectedModel) {
+			if(!selectedModel || oldSelected !== selectedModel) {
 				this.models.forEach(function(model){
 					model.set('selected', (selectedModel === model));
 					model.set('oldSelected', (oldSelected === model));
@@ -72,9 +78,15 @@ define([
 		},
 
 		"getSelectedQuestion": function() {
-			return _.find(this.models, function(model){
+			return this.models.filter(function(model){
 				return model.get('selected');
-			});
+			})[0];
+		},
+
+		"getCorrectAnswerCount": function() {
+			return this.models.filter(function(model){
+				return model.get('isCorrect');
+			}).length
 		}
 
 	};

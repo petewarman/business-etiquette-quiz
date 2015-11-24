@@ -1,13 +1,7 @@
 // Library paths
 // If you want to use a new library, add it here.
 require.config({
-  shim: {
-    underscore: {
-      exports: '_'
-    }
-  },
   paths: {
-    'underscore': '../vendor/underscore/underscore',
     'main': 'main',
     'app': 'app',
     'eventBus': 'eventBus',
@@ -16,16 +10,21 @@ require.config({
     'appView': './views/appView',
     'questionsCollection': 'questionsCollection',
     'questionModel': 'questionModel',
+    'resultsCollection': 'resultsCollection',
+    'resultModel': 'resultModel',
     'thumbView': './views/thumbView',
     'detailView': './views/detailView',
     'resultsView': './views/resultsView',
     'hbs': '../vendor/require-handlebars-plugin/hbs',
+    'handlebars': "../vendor/require-handlebars-plugin/hbs/handlebars.runtime",
     'utils': 'utils'
   },
   hbs: { // optional
       'helpers': true,            // default: true
       'templateExtension': 'hbs', // default: 'hbs'
-      'partialsUrl': ''           // default: ''
-  }
+      'partialsUrl': '',           // default: ''
+      'handlebarsPath': 'handlebars'
+  },
+  stubModules: ['hbs', 'hbs/underscore', 'hbs/json2', 'hbs/handlebars'],
 });
 

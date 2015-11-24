@@ -1,4 +1,4 @@
-define(['underscore'], function(_) {
+define(function() {
 	'use strict';
 
 	var utils = {
@@ -43,6 +43,66 @@ define(['underscore'], function(_) {
 				return parents;
 			}
 
+		},
+
+		"extend": function(a, b) {
+			for(var prop in b) {
+				if(b.hasOwnProperty(prop)) {
+					a[prop] = b[prop];
+				}
+			}
+
+			return a;
+		},
+
+		"debounce": function(func, wait, immediate) {
+			var timeout, args, context, timestamp, result;
+
+			var later = function() {
+				var last = Date.now() - timestamp;
+
+				if (last < wait && last >= 0) {
+					timeout = setTimeout(later, wait - last);
+				} else {
+					timeout = null;
+					if (!immediate) {
+						result = func.apply(context, args);
+						if (!timeout) context = args = null;
+					}
+				}
+			};
+
+			return function() {
+				context = this;
+				args = arguments;
+				timestamp = Date.now();
+				var callNow = immediate && !timeout;
+				if (!timeout) timeout = setTimeout(later, wait);
+				if (callNow) {
+					result = func.apply(context, args);
+					context = args = null;
+				}
+
+				return result;
+			};
+		},
+
+		"supportsTransitions": function() {
+			var b = document.body || document.documentElement,
+				s = b.style,
+				p = 'transition';
+
+			if (typeof s[p] == 'string') { return true; }
+
+			// Tests for vendor specific prop
+			var v = ['Moz', 'webkit', 'Webkit', 'Khtml', 'O', 'ms'];
+			p = p.charAt(0).toUpperCase() + p.substr(1);
+
+			for (var i=0; i<v.length; i++) {
+				if (typeof s[v[i] + p] == 'string') { return true; }
+			}
+
+			return false;
 		}
 
 	};

@@ -1,19 +1,23 @@
 define([
-	'underscore',
+	'utils',
 	'eventBus'
 ], function(
-	_,
+	Utils,
 	EventBus
 ) {
 	'use strict';
 
-	function BaseModel(data, options){
+	var prototype = Object.create(EventBus.prototype);
+
+	function BaseModel(properties, options){
 
 		this.options = options;
+		this.properties = properties; 
+		this._listeners = [];
 
 	}
 
-	BaseModel.prototype = _.extend({
+	BaseModel.prototype = Utils.extend(prototype, {
 
 		"properties": [],
 
@@ -30,7 +34,7 @@ define([
 			}
 		}
 
-	}, EventBus.prototype);
+	});
 
 	return BaseModel;
 

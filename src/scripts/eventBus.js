@@ -1,4 +1,4 @@
-define(['underscore'], function(_) {
+define(function() {
 	'use strict';
 
 	function EventBus() {
@@ -21,11 +21,9 @@ define(['underscore'], function(_) {
 
 		"off": function(event, callback) {
 
-			this._listeners = _.reject(this._listeners, function(listener) {
-
-				return (listener.event === event && listener.callback === callback);
-
-			});
+			this._listeners = this._listeners.filter(function(listener){
+				return (listener.event !== event || listener.callback !== callback) 
+			}, this);
 
 		},
 

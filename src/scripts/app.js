@@ -1,11 +1,11 @@
 define([
-	'underscore',
 	'questionsCollection',
+	'resultsCollection',
 	'appView',
 	'eventBus'
 ], function(
-	_,
 	QuestionsCollection,
+	ResultsCollection,
 	AppView,
 	EventBus
 ) {
@@ -18,6 +18,7 @@ define([
 			this.eventBus = new EventBus();
 			this._questionsCollection = this.createQuestionsCollection(this.options.data.questions);
 			this._questionsCollection.setRootPath(options.rootPath);
+			this._resultsCollection = this.createResultsCollection(this.options.data.results);
 			this.view = this.createAppView();
 			this.options.baseEl.appendChild(this.view.el);
 			this.view.positionThumbs();
@@ -29,14 +30,27 @@ define([
 			});
 		},
 
+		"createResultsCollection": function(collectionData) {
+			return new ResultsCollection(collectionData, {
+				'eventBus': this.eventBus
+			});
+		},
+
 		"getQuestionsCollection": function() {
 			return this._questionsCollection;
 		},
 
-		"createAppView": function() {
+		"getResultsCollection": function() {
+			return this._resultsCollection;
+		},
+
+		"createAppView": function(rootPath) {
 			return new AppView({
 				"questions": this.getQuestionsCollection(),
-				"eventBus": this.eventBus
+				"results": this.getResultsCollection(),
+				"eventBus": this.eventBus,
+				"rootPath": this.options.rootPath,
+				"shareCopy": this.options.data.shareCopy
 			});
 		}
 

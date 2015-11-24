@@ -1,12 +1,48 @@
+@keyframes answer {
+
+	50% {
+		transform: scale(1.4);
+	}
+
+}
+
 .thumb {
 	background: $color-yellow;
 	position: absolute;
 	left: 0;
 	top: 0;
 	transition: all 0.4s;
+	width: 2%;
+
+	svg {
+		visibility: hidden;
+		position: absolute;
+		left: 8%;
+		top: 8%;
+		width: 84%;
+		height: 84%;
+		fill: none;
+		stroke: #ffffff;
+		stroke-dasharray: 200;
+	}
+
+	&:not(:hover) svg {
+		stroke-dashoffset: 200 !important;
+	}
+
+	&:hover svg {
+		visibility: visible;
+		transition: stroke-dashoffset 0.5s;
+	}
 
 	&.is-answered {
 		background: $color-black;
+		animation: answer 0.4s ease-in-out;
+		
+		.thumb__image {
+			transition: transform 0.6s ease-in-out;
+			transform: rotate(360deg);
+		}
 
 		&:after {
 			content: '';
@@ -14,13 +50,77 @@
 			left: 50%;
 			top: 50%;
 			transform: translate(-50%, -50%);
-			width: 50%;
-			height: 50%;
-			background: url(../icons/tick.svg) center center no-repeat;
-			background-size: contain;
+		}
+
+		svg {
+			display: none;
 		}
 	}
 
+	&.is-answered--wrong:after {
+		background: url(../icons/cross.svg) center center no-repeat;
+		background-size: contain;
+		width: 45%;
+		height: 45%;
+	}
+
+	&.is-answered--correct:after {
+		background: url(../icons/tick.svg) center center no-repeat;
+		background-size: contain;
+		width: 50%;
+		height: 50%;
+	}
+
+}
+
+&.map-view {
+	&.intro .thumb {
+		left: 50% !important;
+		top: 50% !important;
+		width: 20% !important;
+		opacity: 0;
+		transform: translate(-50%, 50%);
+	}
+
+	.thumb {
+		width: 2%;
+		cursor: auto;
+	}
+
+	&.intro .thumb__text {
+		opacity: 1;
+	}
+
+	.thumb__text {
+		opacity: 0;
+	}
+
+	.thumb .thumb__image-holder .thumb__image {
+		opacity: 1;
+	}
+
+	$appear-duration: 0.5s;
+	$static-duration: 0.2s;
+	$shrink-duration: 0.5s;
+	$step-delay: -0.4s;
+	$full-step-duration: $appear-duration + $static-duration + $shrink-duration + $step-delay;
+	//$easing: cubic-bezier(.6,-.28,.74,.05);
+	$easing: cubic-bezier(0.6,-0.28, 0.35, 1);
+
+	@for $i from 0 through 7 {
+		.thumb:nth-child(#{ $i + 1 }) { 
+			transition: 
+				left $shrink-duration $easing #{ $full-step-duration * $i + ($appear-duration + $static-duration) }, 
+				top $shrink-duration $easing #{ $full-step-duration * $i + ($appear-duration + $static-duration) }, 
+				width $shrink-duration $easing #{ $full-step-duration * $i + ($appear-duration + $static-duration) }, 
+				opacity $appear-duration #{ $full-step-duration * $i },
+				transform #{ $appear-duration + ($static-duration / 2)} cubic-bezier(0, 0, 0.2, 1) #{ $full-step-duration * $i };
+
+			.thumb__text {
+				transition: opacity #{ $shrink-duration / 2 } #{ $full-step-duration * ($i) + ($appear-duration + $static-duration) };
+			}
+		}
+	}
 }
 
 $delay-step: 0.05s;
@@ -31,6 +131,10 @@ $delay-step: 0.05s;
 
 		.thumb__image {
 			transition-delay: 0s, #{$delay-step * $i}; 
+		}
+
+		.thumb__text {
+			transition-delay: #{0.4s + ($delay-step * $i)}, 0s; 
 		}
 	}
 }
@@ -66,37 +170,72 @@ $delay-step: 0.05s;
 
 .thumb__text {
 	position: absolute;
-	right: #{ $gridGutter }px;
-	bottom: #{ $gridGutter }px;
+	right: #{ $gridGutter }%;
+	bottom: #{ $gridGutter }%;
 	color: $color-white;
 	text-transform: uppercase;
 	line-height: 1;
 	text-shadow: 0 0 1px #000, 0 0 1px #000, 0 0 1px #000, 0 0 1px #000;
+	transition: opacity 0.3s 0.8s, visibility 0s 0s;
+}
+
+.thumb:hover .thumb__text {
+	text-shadow: none;
 }
 
 &.question-selected,
 &.map-view {
 	.thumb {
-		width: 30px;
 		border-radius: 50%;
-		overflow: hidden;
+
+		svg {
+			display: none;
+		}
 	}
 
 	.thumb__image {
 		border-radius: 50%;
-	}
-
-	.thumb__text {
-		display: none;
+		overflow: hidden;
 	}
 
 }
 
-&.map-view {
-	background: url(../icons/map.svg) center center no-repeat;
-	background-size: contain;
+&.question-selected {
+	.thumb__text {
+		visibility: hidden;
+		opacity: 0;
+		transition: opacity 0.3s 0s, visibility 0s 0.3s;
+	}
+}
 
+&.map-view {
 	.thumb {
-		margin: -15px 0 0 -15px;
+		transform: translate(-50%, -50%);
+	}
+
+	.thumb__text {
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+		top: 110%;
+		text-align: center;
+		width: 100px;
+		text-shadow: none;
+		color: #666;
+	}
+}
+
+&:not(.question-selected):not(.map-view) {
+	.thumb__text {
+		font-size: 2.2vw;
+		white-space: nowrap;
+	}
+}
+
+@media screen and (max-width: $bp-desktop - 1) {
+	&:not(.question-selected):not(.map-view) {
+		.thumb__text {
+			font-size: 4.4vw;
+		}
 	}
 }

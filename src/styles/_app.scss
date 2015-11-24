@@ -3,24 +3,24 @@
 }
 
 .detail-container {
-	opacity: 0;
+	//opacity: 0;
 	overflow: hidden;
-	transition: opacity 0.3s;
+	//transition: opacity 0.3s;
 }
 
 .close-detail {
 	position: absolute;
-	right: 0;
-	top: 0;
+	right: 5px;
+	top: 10px;
 	z-index: 1;
-	height: 40px;
-	width: 60px;
-	background: url(../icons/map.svg) center center no-repeat;
+	height: 19px;
+	width: 39px;
+	background: url(../icons/grid.svg) center center no-repeat;
 	background-size: contain;
 	border: 0;
 	margin: 0;
 	padding: 0;
-	text-indent: 60px;
+	text-indent: 40px;
 	white-space: nowrap;
 	overflow: hidden;
 }
@@ -29,12 +29,26 @@
 	border: 0;
 	background: $color-yellow;
 	color: $button-text-color;
-	padding: 5px 10px;
+	padding: 5px 25px 5px 10px;
 	border-radius: 13px;
 	font-size: 16px;
 	line-height: 1;
 	font-weight: bold;
 	margin-top: 10px;
+	position: relative;
+	float: right;
+
+	&:after {
+		position: absolute;
+		content: '';
+		background: url(../icons/arrow.svg) center center no-repeat;
+		right: 8px;
+		top: 50%;
+		height: 12px;
+		width: 12px;
+		margin-top: -6px;
+		background-size: contain;
+	}
 }
 
 .close-detail,
@@ -42,6 +56,13 @@
 	visibility: hidden;
 	opacity: 0;
 	transition: opacity 0.3s 0s, visibility 0s 0.3s;
+}
+
+.results-container {
+	visibility: hidden;
+	opacity: 0;
+	transition: opacity 0.3s 0s, visibility 0s 0.3s;
+	position: absolute;
 }
 
 &.question-selected {
@@ -55,11 +76,31 @@
 		opacity: 1;
 	}
 
-	.close-detail,
-	.next-question {
+	.close-detail.is-active,
+	.next-question.is-active {
 		visibility: visible;
 		opacity: 1;
 		transition: opacity 0.3s 0.5s, visibility 0s 0.5s;
+	}
+}
+
+&.results-view {
+	.thumbs-container {
+		opacity: 0;
+		visibility: hidden;
+	}
+
+	.detail-container {
+		position: absolute;
+	}
+
+	.results-container {
+		position: relative;
+		visibility: visible;
+		opacity: 1;
+		transition: opacity 0.3s 0.5s, visibility 0s 0.5s;
+		z-index: 1;
+		padding: 10px;
 	}
 }
 

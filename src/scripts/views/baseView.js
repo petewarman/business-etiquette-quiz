@@ -1,8 +1,6 @@
 define([
-	'underscore',
 	'utils'
 ], function(
-	_,
 	Utils
 ) {
 	'use strict';
@@ -21,6 +19,7 @@ define([
 		}
 
 		this.bindContext();
+		this.bindUiEventContexts();
 		this.addDataEventListeners();
 		this.render();
 		this.getUiRefs();
@@ -29,6 +28,13 @@ define([
 	}
 
 	BaseView.prototype = {
+
+
+	// Utils.extend(baseProto, {
+		
+	//});
+
+	// var proto = {
 
 		"tagName": "div",
 
@@ -43,6 +49,12 @@ define([
 		"uiEvents": {},
 
 		"bindContext": function() {},
+
+		"bindUiEventContexts": function() {
+			Object.keys(this.uiEvents).forEach(function (event) { 
+				this[this.uiEvents[event]] = this[this.uiEvents[event]].bind(this);
+			}, this);
+		},
 
 		"render": function() {
 			this.el = document.createElement(this.tagName);
@@ -74,8 +86,8 @@ define([
 					eventType = parts[0],
 					uiRef = this.ui[parts[1]] || null; 
 
-				if(uiRef) {
-					_.each(uiRef, function(el){
+				if(uiRef && uiRef.length > 0) {
+					[].forEach.call(uiRef, function(el){
 						el.addEventListener(eventType, listener);
 					}, this);
 				} else {
@@ -92,7 +104,7 @@ define([
 					uiRef = this.ui[parts[1]] || null; 
 
 				if(uiRef) {
-					_.each(uiRef, function(el){
+					[].forEach.call(uiRef, function(el){
 						el.removeEventListener(eventType, listener);
 					}, this);
 				} else {

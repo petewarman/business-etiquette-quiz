@@ -1,41 +1,32 @@
 define([
-	'underscore',
-	'eventBus'
+	'utils',
+	'baseModel'
 ], function(
-	_,
-	EventBus
+	Utils,
+	BaseModel
 ) {
 	'use strict';
 
-	function Question(questionData, options){
+	var prototype = Object.create(BaseModel.prototype);
+
+	function Question(data, options){
 
 		if (!(this instanceof Question)) {
-			return new Question(questionData);
+			return new Question(data);
 		}
+
+		BaseModel.call(this, data, options);
 
 		var defaults = {
 			"state": "unanswered",
 			"answerGiven": null
 		};
 
-		this.options = options;
-		this.properties = _.extend(defaults, questionData); 
-		this._listeners = [];
+		this.properties = Utils.extend(defaults, data); 
 
 	}
 
-	Question.prototype = _.extend({
-
-		"get": function(property) {
-			return this.properties[property];
-		},
-
-		"set": function(property, value) {
-			if(this.properties[property] !== value) {
-				this.properties[property] = value;
-				this.trigger('change:'+ property);
-			}
-		},
+	Question.prototype = Utils.extend(prototype, {
 
 		"onAnswerSelected": function(answer) {
 			var correctAnswer = this.get('answer').index;
@@ -45,9 +36,16 @@ define([
 			this.set('correctAnswerLetter', ['A','B','C'][correctAnswer]);
 			this.set('state', 'answered');
 
+		},
+
+		"reset": function() {
+			this.set('answerGiven', null);
+			this.set('isCorrect', null);
+			this.set('correctAnswerLetter', null);
+			this.set('state', 'unanswered');
 		}
 
-	}, EventBus.prototype);
+	});
 
 	return Question;
 

@@ -1,17 +1,17 @@
 define([
-	'underscore',
 	'hbs!../templates/detail',
 	'hbs!../templates/response',
 	'utils',
 	'baseView'
 ], function(
-	_,
 	template,
 	responseTemplate,
 	Utils,
 	BaseView
 ) {
 	'use strict';
+
+	var prototype = Object.create(BaseView.prototype);
 
 	function DetailView(options) {
 		if (!(this instanceof DetailView)) {
@@ -21,7 +21,7 @@ define([
 		BaseView.call(this, options);
 	}
 
-	DetailView.prototype = _.extend({}, BaseView.prototype, {
+	DetailView.prototype = Utils.extend(prototype, {
 
 		"template": template,
 
@@ -39,32 +39,36 @@ define([
 			'description': '.question__description',
 			'optionList': '.question__options-list',
 			'options': '.question__option',
-			'answer': '.question__answer',
-			'nextButton': '.question__next',
-			'closeButton': '.question__close'
+			'answer': '.question__answer'
 		},
 
 		"uiEvents": {
 			'click options': 'onOptionClick',
-			'click nextButton': 'onNextButtonClick',
-			'click closeButton': 'onCloseButtonClick'
+			'transitionend': 'onTransitionend'
 		},
 
-		"bindContext": function() {
-			_.bindAll(this, 'onOptionClick');
+		"addOptionClickListeners": function(){
+			[].forEach.call(this.ui.options, function(option){
+				option.addEventListener('click', this.onOptionClick);
+			}, this);
 		},
 
 		"removeOptionClickListeners": function(){
-			_.each(this.ui.options, function(option){
+			[].forEach.call(this.ui.options, function(option){
 				option.removeEventListener('click', this.onOptionClick);
 			}, this);
 		},
 
+		"onTransitionend": function() {
+			Utils.removeClass(this.el, 'is-old-selected');
+		},
+
 		"onOptionClick": function(e) {
 			var selectedOption = Utils.getParentsWithClass(e.target, 'question__option')[0],
-				selectedOptionInd = _.toArray(this.ui.options).indexOf(selectedOption);
+				selectedOptionInd = [].indexOf.call(this.ui.options, selectedOption);
 
 			this.model.onAnswerSelected(selectedOptionInd);
+			this.eventBus.trigger('answerSelected');
 		},
 
 		"onStateChange": function() {
@@ -78,6 +82,14 @@ define([
 				}
 
 				Utils.addClass(this.ui.options[this.model.get('answer').index], 'is-correct');
+			} else {
+				this.enableButtons();
+				this.removeResponse();
+				Utils.removeClass(this.el, 'question--answered');
+				[].forEach.call(this.ui.options, function(option){
+					Utils.removeClass(option, 'is-incorrect');
+					Utils.removeClass(option, 'is-correct');
+				}, this);
 			}
 		},
 
@@ -99,14 +111,26 @@ define([
 
 		"disableButtons": function() {
 			this.removeOptionClickListeners();
-			_.toArray(this.ui.options).forEach(function(option){
+			[].forEach.call(this.ui.options, function(option){
 				option.removeAttribute('role');
 				option.removeAttribute('tabindex');
-			});
+			}, this);
+		},
+
+		"enableButtons": function() {
+			this.addOptionClickListeners();
+			[].forEach.call(this.ui.options, function(option){
+				option.setAttribute('role', 'button');
+				option.setAttribute('tabindex', '0');
+			}, this);
 		},
 
 		"renderResponse": function() {
 			this.ui.answer[0].innerHTML = responseTemplate(this.model.properties);
+		},
+
+		"removeResponse": function() {
+			this.ui.answer[0].innerHTML = '';
 		}
 
 	});
