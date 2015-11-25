@@ -5,6 +5,6 @@ module.exports = {
 	},
 	"root": {
 		"build": "http://localhost:5000/",
-		"dist": "http://labs.theguardian.com/2015/nov/ups/"
+		"dist": "http://labs.theguardian.com/2015/nov/ups-business-etiquette/"
 	}
 }

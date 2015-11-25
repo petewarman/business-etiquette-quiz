@@ -92,6 +92,8 @@ define([
 		"onAnswerSelected": function() {
 			if(this.questionsCollection.getUnansweredQuestionCount() === 0) {
 				this.setAsLastQuestion();
+			} else {
+				this.ui.nextQuestionButton[0].textContent = 'Next';
 			}
 
 			this.activateButton(this.ui.nextQuestionButton[0]);
@@ -223,7 +225,7 @@ define([
 		"positionThumbsAsGrid": function() {
 			var containerWidth = this.ui.thumbsContainer.el.getBoundingClientRect().width,
 				thumbsPerRow = this.getThumbsPerRow(),
-				thumbSize = (containerWidth - (this.gridLayoutSettings.gutter * (thumbsPerRow - 1))) / thumbsPerRow,
+				thumbSize = Math.floor((containerWidth - (this.gridLayoutSettings.gutter * (thumbsPerRow - 1))) / thumbsPerRow),
 				containerHeight = Math.floor((this.ui.thumbsContainer.views.length - 1) / thumbsPerRow) * (thumbSize + this.gridLayoutSettings.gutter) + thumbSize;
 
 			this.el.style.height = containerHeight + 'px';
@@ -236,7 +238,7 @@ define([
 				thumbView.el.style.top = top + 'px';
 				thumbView.el.style.left = left + 'px';
 				thumbView.el.style.width = thumbSize + 'px';
-				thumbView.updateBox(thumbSize);
+				setTimeout(function(){thumbView.updateBox(thumbSize)}, 1000);
 
 			}, this);
 		},
@@ -245,14 +247,15 @@ define([
 			var containerWidth = this.ui.thumbsContainer.el.getBoundingClientRect().width,
 				thumbSize = 36,
 				thumbCount = this.ui.thumbsContainer.views.length,
-				gutter = 10;
+				gutter = 10,
+				elHeight = Math.min((containerWidth * 0.6), 700);
 
-			this.el.style.height = (containerWidth * 0.6 + gutter + thumbSize + 40) + 'px';
+			this.el.style.height = (elHeight + gutter + thumbSize + 40) + 'px';
 
 			this.ui.thumbsContainer.views.forEach(function(thumbView, index){
 
-				var top = containerWidth * 0.6 + gutter + 40,
-					left = containerWidth * 0.6 - ((thumbCount - index) * (thumbSize + gutter)) + gutter;
+				var top = elHeight + gutter + 40,
+					left = elHeight - ((thumbCount - index) * (thumbSize + gutter)) + gutter;
 
 				thumbView.el.style.top = top + 'px';
 				thumbView.el.style.left = left + 'px';

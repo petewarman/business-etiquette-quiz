@@ -18,8 +18,8 @@ $guss-webfonts-base-url: '//pasteup.guim.co.uk/fonts/';
 .ups-interactive {
 	position: relative;
 	font-family: 'Guardian Agate Sans 1 Web', sans-serif;
-	transition: height 0.3s 0.3s;
-	overflow-x: hidden;
+	transition: height 0.3s 0.8s;
+	overflow: hidden;
 
 	&:before {
 		content: '';
@@ -32,11 +32,15 @@ $guss-webfonts-base-url: '//pasteup.guim.co.uk/fonts/';
 		background-size: contain;
 		opacity: 0;
 		transition: opacity 0.5s;
-		z-index: -1; 
+		//z-index: -1; 
 	}
 
 	&.map-view:before {
-		opacity: 1;
+		opacity: 0.1;
+	}
+
+	&.question-selected {
+		transition: height 0.3s 0s;
 	}
 
 	[role="button"],

@@ -61,6 +61,7 @@ define([
 				params = this.shareCopy.facebook;
 
 			params.link = window.location.href;
+			params.picture = this.rootPath + 'images/' + this.shareCopy.facebook.picture;
 
 			this.openShareWindow(this.createUrl(base, params), 520, 350);
 		},

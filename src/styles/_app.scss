@@ -85,6 +85,8 @@
 }
 
 &.results-view {
+	height: auto !important;
+
 	.thumbs-container {
 		opacity: 0;
 		visibility: hidden;
@@ -102,6 +104,10 @@
 		z-index: 1;
 		padding: 10px;
 	}
+
+	.next-question {
+		position: absolute;
+	}
 }
 
 @media screen and (max-width: ($bp-desktop - 1)) {
@@ -112,6 +118,14 @@
 			visibility: hidden;
 		}
 
+	}
+
+	.next-question {
+		position: absolute;
+	}
+
+	.next-question.is-active {
+		position: relative;
 	}
 }
 

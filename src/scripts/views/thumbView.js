@@ -23,6 +23,7 @@ define([
 
 		this.el.setAttribute('role', 'button');
 		this.el.setAttribute('tabindex', '0');
+		this.updateBox = this.updateBox.bind(this);
 	}
 
 	ThumbView.prototype = Utils.extend(prototype, {
@@ -52,6 +53,8 @@ define([
 				boxWidth = thumbWidth * 0.84,
 				pxDiff = boxWidth - (textWidth - (thumbWidth * 0.04)),
 				dashOffset = 0;
+
+			console.log(textWidth);
 
 			if(pxDiff < 0) {
 				dashOffset = 60;

@@ -29,7 +29,17 @@
 }
 
 
-@media screen and (min-width: 710px) {
+@media screen and (max-width: $bp-desktop - 1) {
+	$font-size: 14;
+
+	.question {
+		font-size: #{$font-size}px;
+		line-height: 16 / $font-size;
+	}
+
+}
+
+@media screen and (min-width: 860px) {
 	$font-size: 14;
 
 	.question {
@@ -43,7 +53,7 @@
 
 }
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 960px) {
 	$font-size: 16;
 
 	.question {
@@ -247,4 +257,18 @@
 		opacity: 1;
 	}
 
+}
+
+@media screen and (min-width: 1300px) {
+	.question__image-holder {
+		width: 700px;
+	}
+
+	.question__country {
+		margin-left: calc(100% - 688px);
+	}
+
+	.question__details {
+		width: calc(100% - 700px - 1em);
+	}
 }
