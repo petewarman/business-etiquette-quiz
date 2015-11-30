@@ -91,15 +91,15 @@
 			}
 		},
 		{
-			"name": "Nigerian in London",
+			"name": "Nigeria",
 			"strokeDashoffset": "53",
-			"imageFilename": "london.jpg",
+			"imageFilename": "nigeria.jpg",
 			"imageAlt": "Alt text",
-			"mapX": "48",
-			"mapY": "36.5",
-			"question": "A Nigerian company director is in London, and you’re meeting for an informal chat about how your company could expand into Nigerian marketplaces. How should you address him when you meet him for the first time?",
+			"mapX": "50.5",
+			"mapY": "61",
+			"question": "You’re about to meet a Nigerian company director for an informal chat about how your company could expand into Nigerian marketplaces. How should you address him when you meet him for the first time?",
 			"options": [
-				"By his title, whatever that is — Professor, Dr, Your Excellency – and his surname",
+				"By his title, whatever that is — Professor, Dr, Your Excellency — and his surname",
 				"By his first name, to establish rapport",
 				"By his full name but without the title — titles sound too formal, and you want to appear friendly"
 			],
@@ -149,17 +149,17 @@
 		{
 			"scores": [0, 1, 2, 3],
 			"title": "There’s room for improvement",
-			"copy": "But don’t worry — you can find out more about business etiquette and expanding your business overseas by visiting our Exporting to New Markets hub"
+			"copy": "But don’t worry — you can find out more about business etiquette and expanding your business overseas by visiting our <a href='http://www.theguardian.com/small-business-network/exporting-to-new-markets'>Exporting to New Markets hub</a>"
 		},
 		{
 			"scores": [4, 5, 6],
 			"title": "Pretty good!",
-			"copy": "You have demonstrated a good grasp of etiquette in most of these business situations. For more information on expanding your business overseas, visit our Exporting to New Markets hub"
+			"copy": "You have demonstrated a good grasp of etiquette in most of these business situations. For more information on expanding your business overseas, visit our <a href='http://www.theguardian.com/small-business-network/exporting-to-new-markets'>Exporting to New Markets hub</a>"
 		},
 		{
 			"scores": [7, 8],
 			"title": "Well done!",
-			"copy": "You have demonstrated an excellent grasp of etiquette in these different business situations. For more information on expanding your business overseas, visit our Exporting to New Markets hub"
+			"copy": "You have demonstrated an excellent grasp of etiquette in these different business situations. For more information on expanding your business overseas, visit our <a href='http://www.theguardian.com/small-business-network/exporting-to-new-markets'>Exporting to New Markets hub</a>"
 		}
 	],
 	"shareCopy": {
@@ -167,14 +167,14 @@
 			"display": "popup",
 			"app_id": "741666719251986",
 			"link": "http://www.theguardian.com",
-			"picture": "london.jpg",
+			"picture": "india.jpg",
 			"redirect_uri": "http://www.theguardian.com",
 			"name": "Mind your manners",
-			"caption": "Mind your manners",
+			"caption": "Doing business abroad",
 			"description": "How much do you know about international business etiquette? Take the test"
 		},
 		"twitter": {
-			"text": "Mind your manners. How much do you know about international business etiquette? Take the test",
+			"text": "How much do you know about international business etiquette? Take the test",
 			"source": "http://www.theguardian.com"
 		},
 		"linkedin": {
@@ -185,8 +185,8 @@
 			"url": "http://www.theguardian.com"
 		},
 		"email": {
-			"subject": "Mind your manners",
-			"body": "How much do you know about international business etiquette? Take the test"
+			"subject": "​​International business etiquette: take the test",
+			"body": "How much do you know about international business etiquette? Learn about how business is conducted in other countries by testing yourself with these scenarios"
 		}
 	}
 }

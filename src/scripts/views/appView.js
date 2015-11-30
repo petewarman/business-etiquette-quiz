@@ -225,20 +225,21 @@ define([
 		"positionThumbsAsGrid": function() {
 			var containerWidth = this.ui.thumbsContainer.el.getBoundingClientRect().width,
 				thumbsPerRow = this.getThumbsPerRow(),
-				thumbSize = Math.floor((containerWidth - (this.gridLayoutSettings.gutter * (thumbsPerRow - 1))) / thumbsPerRow),
-				containerHeight = Math.floor((this.ui.thumbsContainer.views.length - 1) / thumbsPerRow) * (thumbSize + this.gridLayoutSettings.gutter) + thumbSize;
+				thumbWidth = Math.floor((containerWidth - (this.gridLayoutSettings.gutter * (thumbsPerRow - 1))) / thumbsPerRow),
+				thumbHeight = (thumbsPerRow === 2) ? Math.floor(thumbWidth * 0.75) : thumbWidth,
+				containerHeight = Math.floor((this.ui.thumbsContainer.views.length - 1) / thumbsPerRow) * (thumbHeight + this.gridLayoutSettings.gutter) + thumbHeight;
 
 			this.el.style.height = containerHeight + 'px';
 
 			this.ui.thumbsContainer.views.forEach(function(thumbView, index){
 
-				var top = Math.floor(index / thumbsPerRow) * (thumbSize + this.gridLayoutSettings.gutter),
-					left = (index % thumbsPerRow) * (thumbSize + this.gridLayoutSettings.gutter);
+				var top = Math.floor(index / thumbsPerRow) * (thumbHeight + this.gridLayoutSettings.gutter),
+					left = (index % thumbsPerRow) * (thumbWidth + this.gridLayoutSettings.gutter);
 
 				thumbView.el.style.top = top + 'px';
 				thumbView.el.style.left = left + 'px';
-				thumbView.el.style.width = thumbSize + 'px';
-				setTimeout(function(){thumbView.updateBox(thumbSize)}, 1000);
+				thumbView.el.style.width = thumbWidth + 'px';
+				setTimeout(function(){thumbView.updateBox(thumbWidth)}, 1000);
 
 			}, this);
 		},
@@ -325,6 +326,7 @@ define([
 		"onNextButtonClick": function() {
 			this.deactivateButton(this.ui.nextQuestionButton[0]);
 			this.showNextUnansweredQuestion();
+			window.scrollBy(0, this.el.getBoundingClientRect().top);
 		},
 
 		"onCloseButtonClick": function() {

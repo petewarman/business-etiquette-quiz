@@ -39,6 +39,7 @@ define([
 
 		"uiRefs": {
 			'box': '.thumb__box',
+			'smallBox': '.thumb__box--small',
 			'text': '.thumb__text',
 			'image': '.thumb__image'
 		},
@@ -50,19 +51,19 @@ define([
 
 		"updateBox": function(thumbWidth) {
 			var textWidth = this.ui.text[0].offsetWidth,
-				boxWidth = thumbWidth * 0.84,
-				pxDiff = boxWidth - (textWidth - (thumbWidth * 0.04)),
+				boxWidth = this.ui.box[0].offsetWidth,
+				offsetDifference = 8, // differece in right offset between text and box. 
+				pxDiff = boxWidth - (textWidth - offsetDifference),  
 				dashOffset = 0;
 
-			console.log(textWidth);
-
 			if(pxDiff < 0) {
-				dashOffset = 60;
+				dashOffset = 120;
 			} else {
-				dashOffset = ((boxWidth - pxDiff) / boxWidth) * 50 + 7;
+				dashOffset = ((textWidth) / boxWidth) * 100 + 10;
 			}
 
 			this.ui.box[0].setAttribute('stroke-dashoffset', dashOffset);
+			this.ui.smallBox[0].setAttribute('stroke-dashoffset', dashOffset);
 		},
 
 		"onElClick": function(e) {

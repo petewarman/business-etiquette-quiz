@@ -23,11 +23,11 @@
 		height: calc(100% - 2em);
 		fill: none;
 		stroke: #ffffff;
-		stroke-dasharray: 200;
+		stroke-dasharray: 400;
 	}
 
 	&:not(:hover) svg {
-		stroke-dashoffset: 200 !important;
+		stroke-dashoffset: 400 !important;
 	}
 
 	&:hover svg {
@@ -222,6 +222,51 @@ $delay-step: 0.05s;
 		width: 100px;
 		text-shadow: none;
 		color: #666;
+	}
+}
+
+@media screen and (max-width: $bp-desktop - 1) {
+	&:not(.question-selected):not(.map-view) {
+		.thumb__image-holder {
+			padding-bottom: 75%;
+			position: relative;
+			overflow: hidden;
+		}
+
+		.thumb__image {
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+		}
+	}
+
+	.thumb {
+		svg {
+			left: 1em;
+			top: 1em;
+			width: calc(100% - 2em);
+			height: calc(100% - 2em);
+			stroke-dasharray: 350;
+
+			&.thumb__box {
+				visibility: hidden;
+			}
+		}
+
+		&:not(:hover) svg {
+			stroke-dashoffset: 350 !important;
+		}
+	}
+}
+
+@media screen and (min-width: $bp-desktop) {
+	.thumb {
+		svg {
+			&.thumb__box--small {
+				visibility: hidden;
+			}
+		}
 	}
 }
 
