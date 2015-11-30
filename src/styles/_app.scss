@@ -1,61 +1,7 @@
-.thumbs-container {
-	transition: opacity 0.3s;
-}
-
 .detail-container {
 	//opacity: 0;
 	overflow: hidden;
 	//transition: opacity 0.3s;
-}
-
-.close-detail {
-	position: absolute;
-	right: 5px;
-	top: 10px;
-	z-index: 1;
-	height: 19px;
-	width: 39px;
-	background: url(../icons/grid.svg) center center no-repeat;
-	background-size: contain;
-	border: 0;
-	margin: 0;
-	padding: 0;
-	text-indent: 40px;
-	white-space: nowrap;
-	overflow: hidden;
-}
-
-.next-question {
-	border: 0;
-	background: $color-yellow;
-	color: $button-text-color;
-	padding: 5px 25px 5px 10px;
-	border-radius: 13px;
-	font-size: 16px;
-	line-height: 1;
-	font-weight: bold;
-	margin-top: 10px;
-	position: relative;
-	float: right;
-
-	&:after {
-		position: absolute;
-		content: '';
-		background: url(../icons/arrow.svg) center center no-repeat;
-		right: 8px;
-		top: 50%;
-		height: 12px;
-		width: 12px;
-		margin-top: -6px;
-		background-size: contain;
-	}
-}
-
-.close-detail,
-.next-question {
-	visibility: hidden;
-	opacity: 0;
-	transition: opacity 0.3s 0s, visibility 0s 0.3s;
 }
 
 .results-container {
@@ -69,28 +15,13 @@
 	position: relative;
 	height: auto !important;
 
-	.thumbs-container {
-	}
-
 	.detail-container {
 		opacity: 1;
-	}
-
-	.close-detail.is-active,
-	.next-question.is-active {
-		visibility: visible;
-		opacity: 1;
-		transition: opacity 0.3s 0.5s, visibility 0s 0.5s;
 	}
 }
 
 &.results-view {
 	height: auto !important;
-
-	.thumbs-container {
-		opacity: 0;
-		visibility: hidden;
-	}
 
 	.detail-container {
 		position: absolute;
@@ -102,43 +33,11 @@
 		opacity: 1;
 		transition: opacity 0.3s 0.5s, visibility 0s 0.5s;
 		z-index: 1;
-		padding: 10px;
-	}
-
-	.next-question {
-		position: absolute;
-	}
-}
-
-@media screen and (max-width: ($bp-desktop - 1)) {
-	&.question-selected {
-
-		.thumbs-container {
-			opacity: 0;
-			visibility: hidden;
-		}
-
-	}
-
-	.next-question {
-		position: absolute;
-	}
-
-	.next-question.is-active {
-		position: relative;
 	}
 }
 
 @media screen and (min-width: $bp-desktop) {
-	.next-question {
-		position: absolute;
-		right: 0;
-		top: 100%;
-		margin-top: -36px;
-	}
-
 	.detail-container {
-		//position: absolute;
 		left: 0;
 		top: 0;
 		width: 100%;

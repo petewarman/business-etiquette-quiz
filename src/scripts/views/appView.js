@@ -67,14 +67,8 @@ define([
 					"el": this.el.querySelector('.results-container'),
 					"view": null
 				},
-				"closeDetailButton": this.el.querySelectorAll('.close-detail'),
 				"nextQuestionButton": this.el.querySelectorAll('.next-question')
 			};
-		},
-
-		"uiEvents": {
-			'click nextQuestionButton': 'onNextButtonClick',
-			'click closeDetailButton': 'onCloseButtonClick'
 		},
 
 		"bindContext": function() {
@@ -86,17 +80,7 @@ define([
 			this.eventBus.on('questionSelected', this.displayDetail, this);
 			this.eventBus.on('thumbIntroComplete', this.onThumbIntroComplete, this);
 			this.eventBus.on('restartQuiz', this.restartQuiz, this);
-			this.eventBus.on('answerSelected', this.onAnswerSelected, this);
-		},
-
-		"onAnswerSelected": function() {
-			if(this.questionsCollection.getUnansweredQuestionCount() === 0) {
-				this.setAsLastQuestion();
-			} else {
-				this.ui.nextQuestionButton[0].textContent = 'Next';
-			}
-
-			this.activateButton(this.ui.nextQuestionButton[0]);
+			this.eventBus.on('showNextQuestion', this.onShowNextQuestion, this);
 		},
 
 		"activateButton": function(button) {
@@ -113,7 +97,10 @@ define([
 
 		"restartQuiz": function() {
 			this.questionsCollection.reset();
-			this.displayGrid();
+			this.showNextUnansweredQuestion();
+			this.ui.detailContainer.views.forEach(function(view){
+				view.deactivateNextButton();
+			});
 		},
 
 		"onThumbIntroComplete": function(thumbModel) {
@@ -121,7 +108,7 @@ define([
 
 			if(this.thumbIntrosCompleted >= this.questionsCollection.models.length) {
 				if(this.state === 'map'){
-					this.displayGrid();
+					setTimeout(this.showNextUnansweredQuestion.bind(this), 800);
 				}
 			}
 		},
@@ -136,7 +123,7 @@ define([
 			this.thumbIntrosCompleted = 0;
 			Utils.removeClass(this.el, 'intro');
 			if(!Utils.supportsTransitions()) {
-				this.displayGrid();
+				this.showNextUnansweredQuestion();
 			}
 		},
 
@@ -200,12 +187,13 @@ define([
 					Utils.removeClass(this.el, 'question-selected');
 					Utils.removeClass(this.el, 'map-view');
 					Utils.removeClass(this.el, 'intro');
+					this.positionThumbsAsResult();
 			}
 		},
 
 		"positionThumbsAsMap": function() {
 			var containerWidth = this.ui.thumbsContainer.el.getBoundingClientRect().width,
-				thumbSize = 2,
+				thumbSize = 4,
 				containerHeight = containerWidth * 0.573554933;
 
 			this.el.style.height = containerHeight + 'px';
@@ -239,7 +227,25 @@ define([
 				thumbView.el.style.top = top + 'px';
 				thumbView.el.style.left = left + 'px';
 				thumbView.el.style.width = thumbWidth + 'px';
-				setTimeout(function(){thumbView.updateBox(thumbWidth)}, 1000);
+
+			}, this);
+		},
+
+		"positionThumbsAsResult": function() {
+			var containerWidth = this.ui.thumbsContainer.el.getBoundingClientRect().width,
+				thumbSize = 36,
+				thumbCount = this.ui.thumbsContainer.views.length,
+				gutter = 10,
+				thumbsWidth = (thumbCount * thumbSize) + ((thumbCount - 1) * gutter);
+
+			this.ui.thumbsContainer.views.forEach(function(thumbView, index){
+
+				var top = 0,
+					left = (containerWidth/2) - (thumbsWidth/2) + (index * (thumbSize + gutter));
+
+				thumbView.el.style.top = 0 + 'px';
+				thumbView.el.style.left = left + 'px';
+				thumbView.el.style.width = thumbSize + 'px';
 
 			}, this);
 		},
@@ -256,9 +262,10 @@ define([
 			this.ui.thumbsContainer.views.forEach(function(thumbView, index){
 
 				var top = elHeight + gutter + 40,
-					left = elHeight - ((thumbCount - index) * (thumbSize + gutter)) + gutter;
+					//left = elHeight - ((thumbCount - index) * (thumbSize + gutter)) + gutter;
+					left = index * (thumbSize + gutter);
 
-				thumbView.el.style.top = top + 'px';
+				thumbView.el.style.top = 0 + 'px';
 				thumbView.el.style.left = left + 'px';
 				thumbView.el.style.width = thumbSize + 'px';
 
@@ -308,34 +315,18 @@ define([
 		},
 
 		"displayDetail": function(questionModel) {
-			if(this.state !== 'map') {
-				this.state = 'detail';
-				this.positionThumbs();
-				this.activateButton(this.ui.closeDetailButton[0]);
-				this.questionsCollection.setSelectedQuestion(questionModel);
-			}
-		},
-
-		"displayGrid": function() {
-			this.state = 'grid';
+			this.state = 'detail';
 			this.positionThumbs();
-			this.deactivateButton(this.ui.nextQuestionButton[0]);
-			this.questionsCollection.setSelectedQuestion();
+			this.questionsCollection.setSelectedQuestion(questionModel);
 		},
 
-		"onNextButtonClick": function() {
-			this.deactivateButton(this.ui.nextQuestionButton[0]);
+		"onShowNextQuestion": function() {
 			this.showNextUnansweredQuestion();
 			window.scrollBy(0, this.el.getBoundingClientRect().top);
 		},
 
-		"onCloseButtonClick": function() {
-			this.displayGrid();
-		},
-
 		"setAsLastQuestion": function() {
 			this.ui.nextQuestionButton[0].textContent = 'Finished';
-			this.deactivateButton(this.ui.closeDetailButton[0]);
 		}
 
 	});

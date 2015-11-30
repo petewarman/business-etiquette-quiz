@@ -39,12 +39,14 @@ define([
 			'description': '.question__description',
 			'optionList': '.question__options-list',
 			'options': '.question__option',
-			'answer': '.question__answer'
+			'answer': '.question__answer',
+			'nextButton': '.question__next-button'
 		},
 
 		"uiEvents": {
 			'click options': 'onOptionClick',
-			'transitionend': 'onTransitionend'
+			'transitionend': 'onTransitionend',
+			'click nextButton': 'onNextButtonClick'
 		},
 
 		"addOptionClickListeners": function(){
@@ -68,7 +70,24 @@ define([
 				selectedOptionInd = [].indexOf.call(this.ui.options, selectedOption);
 
 			this.model.onAnswerSelected(selectedOptionInd);
-			this.eventBus.trigger('answerSelected');
+
+			this.activateNextButton();
+		},
+
+		"activateNextButton": function() {
+			Utils.addClass(this.ui.nextButton[0], 'is-active');
+			this.ui.nextButton[0].setAttribute('role', 'button');
+			this.ui.nextButton[0].setAttribute('tabindex', '0');
+		},
+
+		"deactivateNextButton": function() {
+			Utils.removeClass(this.ui.nextButton[0], 'is-active');
+			this.ui.nextButton[0].removeAttribute('role');
+			this.ui.nextButton[0].removeAttribute('tabindex');
+		},
+
+		"onNextButtonClick": function() {
+			this.eventBus.trigger('showNextQuestion');
 		},
 
 		"onStateChange": function() {

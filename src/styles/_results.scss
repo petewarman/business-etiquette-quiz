@@ -1,18 +1,13 @@
 .results {
-	padding: 10px 20px 20px;
+	padding: 46px 20px 20px;
 	max-width: 480px;
 	margin: 0 auto;
-	box-shadow: 0 0 20px rgba(0,0,0,0.2);
 	box-sizing: border-box;
+}
 
-	&:before {
-		content: '';
-		display: block;
-		width: 60px;
-		height: 40px;
-		background: url(../icons/map.svg) center center no-repeat;
-		background-size: contain;
-		margin: 0 auto 10px;
+@media screen and (max-width: 400px) {
+	.results {
+		padding-top: 12.5%;
 	}
 }
 
@@ -151,7 +146,7 @@
 
 @media screen and (min-width: $bp-desktop) {
 	.results {
-		padding: 30px 40px 40px;
+		padding: 46px 40px 40px;
 		max-width: 680px;
 
 		&:before {
@@ -194,7 +189,7 @@
 			width: 16px;
 			height: 16px;
 			margin-top: -8px;
-			right: 10px
+			right: 10px;
 		}
 	}
 
@@ -207,7 +202,7 @@
 
 @media screen and (min-width: 800px) {
 	.results {
-		padding: 30px 90px 50px;
+		padding: 46px 90px 50px;
 	}
 
 }
