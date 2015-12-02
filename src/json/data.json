@@ -149,17 +149,17 @@
 		{
 			"scores": [0, 1, 2, 3],
 			"title": "Oh dear, not a great score.",
-			"copy": "But don’t worry — you can find out more about business etiquette and expanding your business overseas by visiting our <a href='http://www.theguardian.com/small-business-network/exporting-to-new-markets'>Exporting to New Markets hub</a>. And if you’d like to share your own example of business etiquette you can do so here."
+			"copy": "But don’t worry — you can find out more about business etiquette and expanding your business overseas by visiting our <a href='http://www.theguardian.com/small-business-network/exporting-to-new-markets'>Exporting to New Markets hub</a>.<br /><br /> And if you’d like to share your own example of business etiquette <a href='http://www.theguardian.com/small-business-network/2015/dec/02/international-business-etiquette-whats-it-like-in-your-country'>you can do so here<a>."
 		},
 		{
 			"scores": [4, 5, 6],
 			"title": "Pretty good!",
-			"copy": "Not a bad score at all. You have a good grasp of etiquette in most of these business situations. Now it’s your turn, if you’d like to share your own example of business etiquette you can do so here. For more information on expanding your business overseas, visit our <a href='http://www.theguardian.com/small-business-network/exporting-to-new-markets'>Exporting to New Markets hub</a>."
+			"copy": "Not a bad score at all. You have a good grasp of etiquette in most of these business situations. Now it’s your turn, if you’d like to share your own example of business etiquette <a href='http://www.theguardian.com/small-business-network/2015/dec/02/international-business-etiquette-whats-it-like-in-your-country'>you can do so here</a>.<br /><br /> For more information on expanding your business overseas, visit our <a href='http://www.theguardian.com/small-business-network/exporting-to-new-markets'>Exporting to New Markets hub</a>."
 		},
 		{
 			"scores": [7, 8],
 			"title": "Well done!",
-			"copy": "You’ve successfully negotiated these scenarios and shown an excellent grasp of business etiquette! Now it’s your turn, if you’d like to share your own example of business etiquette you can do so here. Alternatively, for more information on expanding your business overseas, visit our <a href='http://www.theguardian.com/small-business-network/exporting-to-new-markets'>Exporting to New Markets hub</a>."
+			"copy": "You’ve successfully negotiated these scenarios and shown an excellent grasp of business etiquette! Now it’s your turn, if you’d like to share your own example of business etiquette <a href='http://www.theguardian.com/small-business-network/2015/dec/02/international-business-etiquette-whats-it-like-in-your-country'>you can do so here</a>.<br /><br /> Alternatively, for more information on expanding your business overseas, visit our <a href='http://www.theguardian.com/small-business-network/exporting-to-new-markets'>Exporting to New Markets hub</a>."
 		}
 	],
 	"shareCopy": {
