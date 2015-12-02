@@ -5,6 +5,7 @@
 	font-size: #{$font-size}px;
 	line-height: 14 / $font-size;
 	position: absolute;
+	z-index: 2;
 	visibility: hidden;
 	top: 0;
 	opacity: 0;

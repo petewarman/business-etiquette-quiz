@@ -5,8 +5,8 @@
 			"strokeDashoffset": "22",
 			"imageFilename": "china.jpg",
 			"imageAlt": "Alt text",
-			"mapX": "79",
-			"mapY": "48",
+			"mapX": "76",
+			"mapY": "45",
 			"question": "You’re at a trade show in Beijing hoping to find a distributor for your luxury brand. You’ve had a great chat with a potential Chinese customer and now’s the time to give her your business card. Do you:",
 			"options": [
 				"take a card out of your back pocket and write your mobile phone number on it?",
@@ -23,8 +23,8 @@
 			"strokeDashoffset": "20",
 			"imageFilename": "oman.jpg",
 			"imageAlt": "Alt text",
-			"mapX": "65",
-			"mapY": "54.5",
+			"mapX": "62",
+			"mapY": "51.5",
 			"question": "You’ve received an approach from a company in Oman via their UK agent, and you fly out to Muscat to meet them. You’re eager to get straight down to business but your contact seems more interested in small talk — how many children do you have etc. Should you:",
 			"options": [
 				"answer his questions then move on to talk about business, you only have limited time in Muscat",
@@ -33,7 +33,7 @@
 			],
 			"answer": {
 				"index": 2,
-				"copy": "It’s very rude not to spend a lot of time at the start of any meeting in the Middle East without the proper greetings — hello, how are you, how is your family, and so on. You might consider these invasive questions but politeness demands that you answer them. No matter how much of a rush you are in to get to the point, you can never dispense with this initial greeting period."
+				"copy": "In the Middle East it’s very rude not to spend a decent amount of time exchanging pleasantries at the start of a meeting — hello, how are you, how is your family, and so on. You might consider these invasive questions but politeness demands that you answer them. No matter how much of a rush you are in to get to the point, you can never dispense with this initial greeting period."
 			}
 		},
 		{
@@ -41,8 +41,8 @@
 			"strokeDashoffset": "29",
 			"imageFilename": "germany.jpg",
 			"imageAlt": "Alt text",
-			"mapX": "50.8",
-			"mapY": "37.2",
+			"mapX": "47.8",
+			"mapY": "34.2",
 			"question": "You’re desperate to work with a consultancy in Germany, but you’re not sure you can afford them. You’ve made them a good offer during a face-to-face meeting — now they say they’re ‘thinking about it’. How can you persuade them?",
 			"options": [
 				"write an enthusiastic email reiterating how passionate you are about their work and what a great opportunity it would be for them",
@@ -59,8 +59,8 @@
 			"strokeDashoffset": "20",
 			"imageFilename": "india.jpg",
 			"imageAlt": "Alt text",
-			"mapX": "71.5",
-			"mapY": "55.5",
+			"mapX": "68.5",
+			"mapY": "52.5",
 			"question": "You’ve spent a year organising meetings for your buying trip to Chennai, India — but the manager you’re meeting seems distracted. He’s constantly answering the phone or chatting to employees who wander in while you’re trying to talk. How should you react?",
 			"options": [
 				"Stop talking and politely wait for your host to finish his conversation/call",
@@ -77,8 +77,8 @@
 			"strokeDashoffset": "22",
 			"imageFilename": "japan.jpg",
 			"imageAlt": "Alt text",
-			"mapX": "88",
-			"mapY": "44.9",
+			"mapX": "85",
+			"mapY": "41.9",
 			"question": "You are on your way to Japan for a business meeting but have caught a horrible cold. Should you:",
 			"options": [
 				"Go along anyway and don’t mention that you’re ill, you don’t want to cancel the meeting at such short notice",
@@ -95,8 +95,8 @@
 			"strokeDashoffset": "53",
 			"imageFilename": "nigeria.jpg",
 			"imageAlt": "Alt text",
-			"mapX": "50.5",
-			"mapY": "61",
+			"mapX": "47.5",
+			"mapY": "58",
 			"question": "You’re about to meet a Nigerian company director for an informal chat about how your company could expand into Nigerian marketplaces. How should you address him when you meet him for the first time?",
 			"options": [
 				"By his title, whatever that is — Professor, Dr, Your Excellency — and his surname",
@@ -113,8 +113,8 @@
 			"strokeDashoffset": "30",
 			"imageFilename": "malaysia.jpg",
 			"imageAlt": "Alt text",
-			"mapX": "80",
-			"mapY": "63.8",
+			"mapX": "77",
+			"mapY": "60.8",
 			"question": "You’re meeting the representative of a big retail chain across Malaysia. He invites you for lunch at a Lebanese restaurant to talk about your products. Which hand do you use to eat your pitta bread?",
 			"options": [
 				"the left hand",
@@ -131,8 +131,8 @@
 			"strokeDashoffset": "24",
 			"imageFilename": "russia.jpg",
 			"imageAlt": "Alt text",
-			"mapX": "58",
-			"mapY": "33",
+			"mapX": "55",
+			"mapY": "31",
 			"question": "You’ve organised a meeting with a possible Russian partner and arranged to meet the team at their headquarters in Moscow. You arrive at reception bang on time — but half an hour later, you’re still sitting there. Do you:",
 			"options": [
 				"just wait until your meeting participants show up — and don’t mention their lateness",

@@ -7,18 +7,27 @@
 }
 
 @keyframes wobble {
-	0% { transform: translate(-50%, -50%) scale(1); }
-	10% { transform: translate(-55%, -53%) scale(1.025); }
-	20% { transform: translate(-57%, -49%) scale(1.05); }
-	30% { transform: translate(-49%, -52%) scale(1.025); }
-	40% { transform: translate(-48%, -45%) scale(1); }
-	50% { transform: translate(-50%, -47%) scale(0.975); }
-	60% { transform: translate(-48%, -53%) scale(0.95); }
-	70% { transform: translate(-55%, -49%) scale(0.975); }
-	80% { transform: translate(-52%, -46%) scale(1); }
-	90% { transform: translate(-50%, -48%) scale(1.025); }
-	100% { transform: translate(-46%, -52%) scale(1); }
+	0% { transform: translate(0%, 0%) scale(1); }
+	10% { transform: translate(-5%, -3%) scale(1.025); }
+	20% { transform: translate(-7%, 1%) scale(1.05); }
+	30% { transform: translate(1%, -2%) scale(1.025); }
+	40% { transform: translate(2%, 5%) scale(1); }
+	50% { transform: translate(0%, 3%) scale(0.975); }
+	60% { transform: translate(2%, -3%) scale(0.95); }
+	70% { transform: translate(-5%, 1%) scale(0.975); }
+	80% { transform: translate(-2%, 4%) scale(1); }
+	90% { transform: translate(-0%, 2%) scale(1.025); }
+	100% { transform: translate(4%, -2%) scale(1); }
 }
+
+.thumbs-container {
+	padding-bottom: 57.3554933%;
+	position: absolute;
+	width: 100%;
+	top: 0;
+	left: 0;
+}
+
 
 .thumb {
 	background: $color-yellow;
@@ -118,13 +127,13 @@ $delay-step: 0.05s;
 &.map-view {
 	&.intro .thumb {
 		opacity: 0;
-		transform: translate(-50%, -50%) scale(0.1);
+		transform: scale(0.1);
 	}
 
 	.thumb {
 		width: 4%;
 		cursor: auto;
-		transform: translate(-50%, -50%);
+		//transform: translate(-50%, -50%);
 		animation: wobble 20s infinite;
 	}
 
