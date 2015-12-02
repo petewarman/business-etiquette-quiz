@@ -6,6 +6,20 @@
 
 }
 
+@keyframes wobble {
+	0% { transform: translate(-50%, -50%) scale(1); }
+	10% { transform: translate(-55%, -53%) scale(1.025); }
+	20% { transform: translate(-57%, -49%) scale(1.05); }
+	30% { transform: translate(-49%, -52%) scale(1.025); }
+	40% { transform: translate(-48%, -45%) scale(1); }
+	50% { transform: translate(-50%, -47%) scale(0.975); }
+	60% { transform: translate(-48%, -53%) scale(0.95); }
+	70% { transform: translate(-55%, -49%) scale(0.975); }
+	80% { transform: translate(-52%, -46%) scale(1); }
+	90% { transform: translate(-50%, -48%) scale(1.025); }
+	100% { transform: translate(-46%, -52%) scale(1); }
+}
+
 .thumb {
 	background: $color-yellow;
 	position: absolute;
@@ -33,18 +47,26 @@
 		}
 	}
 
-	&.is-answered--wrong:after {
-		background: url(../icons/cross.svg) center center no-repeat;
-		background-size: contain;
-		width: 45%;
-		height: 45%;
+	&.is-answered--wrong {
+		background: $color-red;
+
+		&:after {
+			background: url(../icons/cross.svg) center center no-repeat;
+			background-size: contain;
+			width: 45%;
+			height: 45%;
+		}
 	}
 
-	&.is-answered--correct:after {
-		background: url(../icons/tick.svg) center center no-repeat;
-		background-size: contain;
-		width: 50%;
-		height: 50%;
+	&.is-answered--correct {
+		background: $color-green;
+
+		&:after {
+			background: url(../icons/tick.svg) center center no-repeat;
+			background-size: contain;
+			width: 50%;
+			height: 50%;
+		}
 	}
 }
 
@@ -103,6 +125,7 @@ $delay-step: 0.05s;
 		width: 4%;
 		cursor: auto;
 		transform: translate(-50%, -50%);
+		animation: wobble 20s infinite;
 	}
 
 	.thumb .thumb__image-holder .thumb__image {
@@ -119,6 +142,7 @@ $delay-step: 0.05s;
 			transition: 
 				opacity $appear-duration $easing #{ $step-delay * $i },
 				transform $appear-duration $easing #{ $step-delay * $i };
+			animation-delay: #{ 0.5s * $i };
 		}
 	}
 }

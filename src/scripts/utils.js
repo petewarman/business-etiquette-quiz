@@ -103,6 +103,36 @@ define(function() {
 			}
 
 			return false;
+		},
+
+		"getScrollTop": function() {
+			return document.documentElement.scrollTop || document.body.scrollTop;
+		},
+
+		"animatedScrollBy": function(yDiff, duration) {
+			if(!this.scrollIsAnimating) {
+				this.scrollIsAnimating = true;
+				this.scrollAnimationDuration = duration;
+				this.scrollAnimationYDiff = yDiff;
+				this.scrollAnimationInitialPosition = this.getScrollTop();
+				window.requestAnimationFrame(this.animatedScrollByStep.bind(this));
+			}
+		},
+
+		"animatedScrollByStep": function(timestamp) {
+			if(!this.scrollAnimationStart) { this.scrollAnimationStart = timestamp; }
+			var progress = (timestamp - this.scrollAnimationStart) / this.scrollAnimationDuration;
+
+			if(progress >= 1) {
+				window.scroll(0, this.scrollAnimationInitialPosition + this.scrollAnimationYDiff);
+				this.scrollIsAnimating = false;
+				this.scrollAnimationDuration = 0;
+				this.scrollAnimationYDiff = 0;
+				this.scrollAnimationStart = false;
+			} else {
+				window.scroll(0, this.scrollAnimationInitialPosition + progress * this.scrollAnimationYDiff);
+				window.requestAnimationFrame(this.animatedScrollByStep.bind(this));
+			}
 		}
 
 	};

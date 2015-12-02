@@ -4,6 +4,7 @@ define([
 	'thumbView',
 	'detailView',
 	'resultsView',
+	'introView',
 	'utils'
 ], function(
 	template,
@@ -11,6 +12,7 @@ define([
 	ThumbView,
 	DetailView,
 	ResultsView,
+	IntroView,
 	Utils
 ) {
 	'use strict';
@@ -38,6 +40,7 @@ define([
 		this.resultsCollection = options.results;
 		this.rootPath = options.rootPath;
 		this.shareCopy = options.shareCopy;
+		this.renderIntro();
 		this.renderThumbs();
 		this.renderDetails();
 		this.addEventBusListeners();
@@ -67,6 +70,10 @@ define([
 					"el": this.el.querySelector('.results-container'),
 					"view": null
 				},
+				"introContainer":  {
+					"el": this.el.querySelector('.intro-container'),
+					"view": null
+				},
 				"nextQuestionButton": this.el.querySelectorAll('.next-question')
 			};
 		},
@@ -77,22 +84,10 @@ define([
 		},
 
 		"addEventBusListeners": function() {
-			this.eventBus.on('questionSelected', this.displayDetail, this);
 			this.eventBus.on('thumbIntroComplete', this.onThumbIntroComplete, this);
 			this.eventBus.on('restartQuiz', this.restartQuiz, this);
+			this.eventBus.on('startQuiz', this.showNextUnansweredQuestion, this);
 			this.eventBus.on('showNextQuestion', this.onShowNextQuestion, this);
-		},
-
-		"activateButton": function(button) {
-			Utils.addClass(button, 'is-active');
-			button.setAttribute('role', 'button');
-			button.setAttribute('tabindex', '0');
-		},
-
-		"deactivateButton": function(button) {
-			Utils.removeClass(button, 'is-active');
-			button.removeAttribute('role');
-			button.removeAttribute('tabindex');
 		},
 
 		"restartQuiz": function() {
@@ -101,6 +96,9 @@ define([
 			this.ui.detailContainer.views.forEach(function(view){
 				view.deactivateNextButton();
 			});
+
+			//track
+			ga('send', 'event', 'restart', 'click');
 		},
 
 		"onThumbIntroComplete": function(thumbModel) {
@@ -108,7 +106,7 @@ define([
 
 			if(this.thumbIntrosCompleted >= this.questionsCollection.models.length) {
 				if(this.state === 'map'){
-					setTimeout(this.showNextUnansweredQuestion.bind(this), 800);
+					//setTimeout(this.showNextUnansweredQuestion.bind(this), 800);
 				}
 			}
 		},
@@ -125,6 +123,15 @@ define([
 			if(!Utils.supportsTransitions()) {
 				this.showNextUnansweredQuestion();
 			}
+		},
+
+		"renderIntro": function() {
+			var view = new IntroView({
+				"eventBus": this.eventBus
+			});
+
+			this.ui.introContainer.view = view;
+			this.ui.introContainer.el.appendChild(view.el);
 		},
 
 		"renderThumbs": function() {
@@ -145,10 +152,11 @@ define([
 			this.questionsCollection.models.forEach(this.renderDetail, this);
 		},
 
-		"renderDetail": function(questionModel) {
+		"renderDetail": function(questionModel, index) {
 			var view = new DetailView({
 				"model": questionModel,
-				"eventBus": this.eventBus
+				"eventBus": this.eventBus,
+				"index": index
 			});
 
 			this.ui.detailContainer.views.push(view);
@@ -162,13 +170,6 @@ define([
 
 		"positionThumbs": function() {
 			switch(this.state) {
-				case 'grid':
-					Utils.removeClass(this.el, 'question-selected');
-					Utils.removeClass(this.el, 'map-view');
-					Utils.removeClass(this.el, 'intro');
-					Utils.removeClass(this.el, 'results-view');
-					this.positionThumbsAsGrid();
-					break;
 				case 'map':
 					Utils.addClass(this.el, 'map-view');
 					Utils.removeClass(this.el, 'question-selected');
@@ -187,13 +188,14 @@ define([
 					Utils.removeClass(this.el, 'question-selected');
 					Utils.removeClass(this.el, 'map-view');
 					Utils.removeClass(this.el, 'intro');
+					//this.positionThumbsAsFooter();
 					this.positionThumbsAsResult();
 			}
 		},
 
 		"positionThumbsAsMap": function() {
 			var containerWidth = this.ui.thumbsContainer.el.getBoundingClientRect().width,
-				thumbSize = 4,
+				thumbSize = 6,
 				containerHeight = containerWidth * 0.573554933;
 
 			this.el.style.height = containerHeight + 'px';
@@ -210,27 +212,6 @@ define([
 			}, this);
 		},
 
-		"positionThumbsAsGrid": function() {
-			var containerWidth = this.ui.thumbsContainer.el.getBoundingClientRect().width,
-				thumbsPerRow = this.getThumbsPerRow(),
-				thumbWidth = Math.floor((containerWidth - (this.gridLayoutSettings.gutter * (thumbsPerRow - 1))) / thumbsPerRow),
-				thumbHeight = (thumbsPerRow === 2) ? Math.floor(thumbWidth * 0.75) : thumbWidth,
-				containerHeight = Math.floor((this.ui.thumbsContainer.views.length - 1) / thumbsPerRow) * (thumbHeight + this.gridLayoutSettings.gutter) + thumbHeight;
-
-			this.el.style.height = containerHeight + 'px';
-
-			this.ui.thumbsContainer.views.forEach(function(thumbView, index){
-
-				var top = Math.floor(index / thumbsPerRow) * (thumbHeight + this.gridLayoutSettings.gutter),
-					left = (index % thumbsPerRow) * (thumbWidth + this.gridLayoutSettings.gutter);
-
-				thumbView.el.style.top = top + 'px';
-				thumbView.el.style.left = left + 'px';
-				thumbView.el.style.width = thumbWidth + 'px';
-
-			}, this);
-		},
-
 		"positionThumbsAsResult": function() {
 			var containerWidth = this.ui.thumbsContainer.el.getBoundingClientRect().width,
 				thumbSize = 36,
@@ -240,10 +221,10 @@ define([
 
 			this.ui.thumbsContainer.views.forEach(function(thumbView, index){
 
-				var top = 0,
+				var top = 10,
 					left = (containerWidth/2) - (thumbsWidth/2) + (index * (thumbSize + gutter));
 
-				thumbView.el.style.top = 0 + 'px';
+				thumbView.el.style.top = top + 'px';
 				thumbView.el.style.left = left + 'px';
 				thumbView.el.style.width = thumbSize + 'px';
 
@@ -302,6 +283,9 @@ define([
 			this.state = 'results';
 			this.positionThumbs();
 			this.questionsCollection.setSelectedQuestion();
+
+			//track
+			ga('send', 'event', 'results', 'show', score);
 		},
 
 		"emptyRegion": function(region) {
@@ -318,11 +302,19 @@ define([
 			this.state = 'detail';
 			this.positionThumbs();
 			this.questionsCollection.setSelectedQuestion(questionModel);
+
+			//track
+			ga('send', 'event', 'question', 'show', questionModel.get('name'));
 		},
 
 		"onShowNextQuestion": function() {
+			var topOffset = this.el.getBoundingClientRect().top - 10;
+
 			this.showNextUnansweredQuestion();
-			window.scrollBy(0, this.el.getBoundingClientRect().top);
+
+			if(topOffset < 0) {
+				Utils.animatedScrollBy(topOffset, 300);
+			}
 		},
 
 		"setAsLastQuestion": function() {

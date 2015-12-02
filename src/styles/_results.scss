@@ -1,13 +1,15 @@
 .results {
-	padding: 46px 20px 20px;
-	max-width: 480px;
+	border-top: 2px solid $color-yellow;
+	border-bottom: 2px solid $color-yellow;
+	padding: 56px 0 10px;
+	//max-width: 480px;
 	margin: 0 auto;
 	box-sizing: border-box;
 }
 
 @media screen and (max-width: 400px) {
 	.results {
-		padding-top: 12.5%;
+		padding-top: 15%;
 	}
 }
 
@@ -55,8 +57,8 @@
 	border: 0;
 	background: $color-yellow;
 	color: $button-text-color;
-	padding: 5px 25px 5px 10px;
-	border-radius: 13px;
+	padding: 12px 25px 12px 10px;
+	border-radius: 20px;
 	font-size: 16px;
 	line-height: 1;
 	font-weight: bold;
@@ -82,9 +84,9 @@
 
 .results__social-link {
 	display: inline-block;
-	width: 26px;
-	height: 26px;
-	border-radius: 13px;
+	width: 32px;
+	height: 32px;
+	border-radius: 16px;
 	background: #333;
 	color: #fff;
 	overflow: hidden;
@@ -141,24 +143,24 @@
 
 	.results__social-link {
 		margin-right: 8px;
+
+		&:last-child {
+			margin-right: 0;
+		}
 	}
 }
 
 @media screen and (min-width: $bp-desktop) {
 	.results {
-		padding: 46px 40px 40px;
-		max-width: 680px;
-
-		&:before {
-			margin-bottom: 20px;
-		}
+		display: flex;
+		flex-wrap: wrap;
 	}
 
 	.results__score {
 		$size: 160px;
 		$font-size: 44px;
 
-		margin: 0;
+		margin: 0 20px 0 0;
 		width: $size;
 		height: $size;
 		border-radius: $size / 2;
@@ -168,16 +170,24 @@
 	}
 
 	.results__copy {
-		margin-left: 180px;
+		$font-size: 18;
+
+		width: calc(100% - 180px);
+		float: right;
+		font-size: #{ $font-size }px;
+		line-height: #{ 21 / $font-size };
+		align-self: center;
 	}
 
 	.results__title {
 		font-size: 32px;
-		margin-bottom: 40px
+		margin-bottom: 40px;
+		width: 100%;
 	}
 
 	.results__footer {
 		padding-top: 30px;
+		width: 100%;
 	}
 
 	.results__button {
@@ -200,9 +210,23 @@
 	}
 }
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 980px) {
 	.results {
-		padding: 46px 90px 50px;
+		//margin: 0 320px 0 0;
+		margin: 0 auto;
+		max-width: 580px;
+		padding-bottom: 15px;
 	}
+}
 
+@media screen and (min-width: 1140px) {
+	.results {
+		//margin: 0 320px 0 0;
+	}
+}
+
+@media screen and (min-width: 1300px) {
+	.results {
+		//margin: 0 400px 0 0;
+	}
 }

@@ -9,8 +9,8 @@
 			"mapY": "48",
 			"question": "You’re at a trade show in Beijing hoping to find a distributor for your luxury brand. You’ve had a great chat with a potential Chinese customer and now’s the time to give her your business card. Do you:",
 			"options": [
-				"take out a card out of your back pocket and write your mobile phone number on it",
-				"point out that paper-based business card are so old hat nowadays — is it OK if you just send her your details via your smartphone instead?",
+				"take a card out of your back pocket and write your mobile phone number on it?",
+				"point out that paper-based business cards are so old hat nowadays — is it OK if you just send her your details via your smartphone instead?",
 				"carefully remove your specially prepared Chinese business card from a silver case in your briefcase, then present it by holding it carefully in front of you, with both hands?"
 			],
 			"answer": {
@@ -25,9 +25,9 @@
 			"imageAlt": "Alt text",
 			"mapX": "65",
 			"mapY": "54.5",
-			"question": "You’ve received an approach from a company in Oman via their UK agent, and you fly out to Muscat to meet them. You’re eager to get straight down to business but your contact seems more interested in small talk — how many children you have etc. Should you:",
+			"question": "You’ve received an approach from a company in Oman via their UK agent, and you fly out to Muscat to meet them. You’re eager to get straight down to business but your contact seems more interested in small talk — how many children do you have etc. Should you:",
 			"options": [
-				"answer his questions then move on to talk about business, you only have a limited time in Muscat",
+				"answer his questions then move on to talk about business, you only have limited time in Muscat",
 				"answer, but don’t ask him anything — you don’t want to seem intrusive",
 				"respond in kind by asking him about his children, holidays, experience of the UK, favourite restaurants in Muscat, and so on, for the next 20 minutes or so"
 			],
@@ -45,9 +45,9 @@
 			"mapY": "37.2",
 			"question": "You’re desperate to work with a consultancy in Germany, but you’re not sure you can afford them. You’ve made them a good offer during a face-to-face meeting — now they say they’re ‘thinking about it’. How can you persuade them?",
 			"options": [
-				"write an impassioned email reiterating how passionate you are about their work and what a great opportunity it would be for them",
-				"write an email asking when they expect to make a decision, after all there are plenty of other consultancies you can approach",
-				"do nothing except send a polite thanks for the meeting. It’s best to wait and see."
+				"write an enthusiastic email reiterating how passionate you are about their work and what a great opportunity it would be for them",
+				"write an email asking when they expect to make a decision — after all there are plenty of other consultancies you can approach",
+				"do nothing except send a polite thanks for the meeting. It’s best to wait and see"
 			],
 			"answer": {
 				"index": 2,
@@ -61,11 +61,11 @@
 			"imageAlt": "Alt text",
 			"mapX": "71.5",
 			"mapY": "55.5",
-			"question": "You’ve spent a year organising meetings for your buying trip to Chennai, India — but the managers you’re meeting seem distracted. They’re constantly answering the phone or chatting to employees who wander in while you’re trying to talk. How should you react?",
+			"question": "You’ve spent a year organising meetings for your buying trip to Chennai, India — but the manager you’re meeting seems distracted. He’s constantly answering the phone or chatting to employees who wander in while you’re trying to talk. How should you react?",
 			"options": [
 				"Stop talking and politely wait for your host to finish his conversation/call",
 				"Just carry on but wrap things up quickly as he clearly isn’t interested",
-				"Ask that he doesn’t respond to any distractions — what you’re saying is important"
+				"Ask him not to respond to any distractions — what you’re saying is important"
 			],
 			"answer": {
 				"index": 0,
@@ -101,7 +101,7 @@
 			"options": [
 				"By his title, whatever that is — Professor, Dr, Your Excellency — and his surname",
 				"By his first name, to establish rapport",
-				"By his full name but without the title — titles sound too formal, and you want to appear friendly"
+				"By his full name but without the title — titles sound too formal and you want to appear friendly"
 			],
 			"answer": {
 				"index": 0,
@@ -115,7 +115,7 @@
 			"imageAlt": "Alt text",
 			"mapX": "80",
 			"mapY": "63.8",
-			"question": "You’re meeting with the representative of a big retail chain across Malaysia. He invites you for lunch at a Lebanese restaurant to talk about your products. Which hand do you use to eat your pita bread?",
+			"question": "You’re meeting the representative of a big retail chain across Malaysia. He invites you for lunch at a Lebanese restaurant to talk about your products. Which hand do you use to eat your pitta bread?",
 			"options": [
 				"the left hand",
 				"the right hand",
@@ -135,7 +135,7 @@
 			"mapY": "33",
 			"question": "You’ve organised a meeting with a possible Russian partner and arranged to meet the team at their headquarters in Moscow. You arrive at reception bang on time — but half an hour later, you’re still sitting there. Do you:",
 			"options": [
-				"just wait until your meeting participants show up. And don’t mention their lateness",
+				"just wait until your meeting participants show up — and don’t mention their lateness",
 				"wait and when they do arrive, ask politely whether they had been stuck in traffic",
 				"tell the receptionist that you’re just going to get a coffee and go for a wander around to pass the time — after all, if your participants are late, it won’t matter if you are, too"
 			],
@@ -148,18 +148,18 @@
 	"results": [
 		{
 			"scores": [0, 1, 2, 3],
-			"title": "There’s room for improvement",
-			"copy": "But don’t worry — you can find out more about business etiquette and expanding your business overseas by visiting our <a href='http://www.theguardian.com/small-business-network/exporting-to-new-markets'>Exporting to New Markets hub</a>"
+			"title": "Oh dear, not a great score.",
+			"copy": "But don’t worry — you can find out more about business etiquette and expanding your business overseas by visiting our <a href='http://www.theguardian.com/small-business-network/exporting-to-new-markets'>Exporting to New Markets hub</a>. And if you’d like to share your own example of business etiquette you can do so here."
 		},
 		{
 			"scores": [4, 5, 6],
 			"title": "Pretty good!",
-			"copy": "You have demonstrated a good grasp of etiquette in most of these business situations. For more information on expanding your business overseas, visit our <a href='http://www.theguardian.com/small-business-network/exporting-to-new-markets'>Exporting to New Markets hub</a>"
+			"copy": "Not a bad score at all. You have a good grasp of etiquette in most of these business situations. Now it’s your turn, if you’d like to share your own example of business etiquette you can do so here. For more information on expanding your business overseas, visit our <a href='http://www.theguardian.com/small-business-network/exporting-to-new-markets'>Exporting to New Markets hub</a>."
 		},
 		{
 			"scores": [7, 8],
 			"title": "Well done!",
-			"copy": "You have demonstrated an excellent grasp of etiquette in these different business situations. For more information on expanding your business overseas, visit our <a href='http://www.theguardian.com/small-business-network/exporting-to-new-markets'>Exporting to New Markets hub</a>"
+			"copy": "You’ve successfully negotiated these scenarios and shown an excellent grasp of business etiquette! Now it’s your turn, if you’d like to share your own example of business etiquette you can do so here. Alternatively, for more information on expanding your business overseas, visit our <a href='http://www.theguardian.com/small-business-network/exporting-to-new-markets'>Exporting to New Markets hub</a>."
 		}
 	],
 	"shareCopy": {

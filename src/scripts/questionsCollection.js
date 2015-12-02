@@ -17,6 +17,9 @@ define([
 		if(questionsData){
 			questionsData.forEach(this.addModel, this);
 		}
+
+		this.setNextButtonText();
+
 	}
 
 	QuestionsCollection.prototype = {
@@ -63,6 +66,14 @@ define([
 		"setRootPath": function(path) {
 			this.models.forEach(function(model){
 				model.set('rootPath', path);
+			});
+		},
+
+		"setNextButtonText": function() {
+			var modelCount = this.models.length;
+
+			this.models.forEach(function(model, index){
+				model.set('nextButtonText', ((index + 1) === modelCount) ? 'Finished' : 'Next');
 			});
 		},
 

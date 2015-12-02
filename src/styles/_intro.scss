@@ -1,0 +1,85 @@
+.intro__title {
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	top: 12%;
+	max-width: 100%;
+	min-width: 80%;
+	color: #333;
+	text-align: center;
+	font-size: 20px;
+	line-height: 1;
+	box-sizing: border-box;
+}
+
+.intro__button {
+	border: 0;
+	background: $color-yellow;
+	color: $button-text-color;
+	padding: 0.75em 1em;
+	border-radius: 1.5em;
+	font-size: 16px;
+	line-height: 1;
+	font-weight: bold;
+	position: absolute;
+	text-align: center;
+	left: 50%;
+	top: 90%;
+	transform: translate(-50%, -50%);
+	margin: 0;
+
+	&:after {
+		display: inline-block;
+		vertical-align: top;
+		content: '';
+		background: url(../icons/arrow.svg) center center no-repeat;
+		right: 0.5em;
+		top: 50%;
+		height: 0.75em;
+		width: 0.75em;
+		margin-top: 0.125em;
+		margin-left: 0.5em;
+		background-size: contain;
+	}
+}
+
+.intro-container {
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 0.3s 0s, visibility 0s 0.3s;
+	height: 100%;
+}
+
+.intro {
+	position: relative;
+	height: 100%;
+}
+
+&.map-view {
+	.intro-container {
+		opacity: 1;
+		visibility: visible;
+		transition: opacity 0.3s 0s, visibility 0s 0s;
+	}
+}
+
+@media screen and (min-width: 414px) {
+	.intro__button {
+		font-size: 20px;
+	}
+}
+
+@media screen and (min-width: $bp-desktop) {
+	.intro__title {
+		font-size: 32px;
+		white-space: nowrap;
+		width: auto;
+		min-width: 0;
+	}
+
+	.intro__button {
+		font-size: 26px;
+		top: 85%;
+	}
+
+}

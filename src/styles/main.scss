@@ -15,11 +15,13 @@ $guss-webfonts-base-url: '//pasteup.guim.co.uk/fonts/';
 @include guss-webfonts('Guardian Agate Sans 1 Web');
 @include guss-typography-defaults;
 
+.js-on.is-modern .content--interactive .element-interactive {background: none;}
+
 .ups-interactive {
 	position: relative;
 	font-family: 'Guardian Agate Sans 1 Web', sans-serif;
 	transition: height 0.3s 0.8s;
-	overflow: hidden;
+	//overflow: hidden;
 
 	&:before {
 		content: '';
@@ -60,4 +62,20 @@ $guss-webfonts-base-url: '//pasteup.guim.co.uk/fonts/';
 	@import 'thumb';
 	@import 'detail';
 	@import 'results';
+	@import 'intro';
+}
+
+@media screen and (min-width: 1140px) {
+	.ups-interactive {
+		//margin: 0 0 0 160px;
+		margin: 0 auto;
+		max-width: 80%
+	}
+}
+
+@media screen and (min-width: 1300px) {
+	.ups-interactive {
+		//margin: 0 0 0 240px;
+		max-width: 75%;
+	}
 }

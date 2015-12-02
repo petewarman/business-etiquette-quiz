@@ -72,12 +72,23 @@ define([
 			this.model.onAnswerSelected(selectedOptionInd);
 
 			this.activateNextButton();
+
+			//track
+			ga('send', 'event', 'question', 'answer', this.model.get('name'), ['A','B','C'][selectedOptionInd]);
+
 		},
 
 		"activateNextButton": function() {
 			Utils.addClass(this.ui.nextButton[0], 'is-active');
 			this.ui.nextButton[0].setAttribute('role', 'button');
 			this.ui.nextButton[0].setAttribute('tabindex', '0');
+
+			var bottomOffset = (this.ui.nextButton[0].getBoundingClientRect().bottom + 10) - document.documentElement.clientHeight;
+
+			if(bottomOffset > 0) {
+				Utils.animatedScrollBy(bottomOffset, 300);
+			}
+
 		},
 
 		"deactivateNextButton": function() {

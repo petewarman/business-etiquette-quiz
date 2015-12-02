@@ -15,6 +15,7 @@ require.config({
     'thumbView': './views/thumbView',
     'detailView': './views/detailView',
     'resultsView': './views/resultsView',
+    'introView': './views/introView',
     'hbs': '../vendor/require-handlebars-plugin/hbs',
     'handlebars': "../vendor/require-handlebars-plugin/hbs/handlebars.runtime",
     'utils': 'utils'
