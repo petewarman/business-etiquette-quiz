@@ -84,7 +84,6 @@ define([
 		},
 
 		"addEventBusListeners": function() {
-			this.eventBus.on('thumbIntroComplete', this.onThumbIntroComplete, this);
 			this.eventBus.on('restartQuiz', this.restartQuiz, this);
 			this.eventBus.on('startQuiz', this.showNextUnansweredQuestion, this);
 			this.eventBus.on('showNextQuestion', this.onShowNextQuestion, this);
@@ -101,16 +100,6 @@ define([
 			ga('send', 'event', 'restart', 'click');
 		},
 
-		"onThumbIntroComplete": function(thumbModel) {
-			this.thumbIntrosCompleted++;
-
-			if(this.thumbIntrosCompleted >= this.questionsCollection.models.length) {
-				if(this.state === 'map'){
-					//setTimeout(this.showNextUnansweredQuestion.bind(this), 800);
-				}
-			}
-		},
-
 		"onResize": function() {
 			this.positionThumbs();
 		},
@@ -118,11 +107,7 @@ define([
 		"startIntro": function() {
 			this.state = 'map';
 			this.positionThumbs();
-			this.thumbIntrosCompleted = 0;
 			Utils.removeClass(this.el, 'intro');
-			if(!Utils.supportsTransitions()) {
-				this.showNextUnansweredQuestion();
-			}
 		},
 
 		"renderIntro": function() {

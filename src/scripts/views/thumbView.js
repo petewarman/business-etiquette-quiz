@@ -40,19 +40,6 @@ define([
 			'image': '.thumb__image'
 		},
 
-		"uiEvents": {
-			'transitionend': 'onTransitionend'
-		},
-
-		"onTransitionend": function() {
-			this.transitionCount++;
-
-			if(this.transitionCount >= 2) {
-				this.eventBus.trigger('thumbIntroComplete', this.model);
-				this.el.removeEventListener('transitionend', this.onTransitionend);
-			}
-		},
-
 		"onChangeSelected": function() {
 			if(this.model.get('selected')) {
 				Utils.addClass(this.el, 'is-selected');
@@ -63,8 +50,6 @@ define([
 
 		"onChangeState": function() {
 			if(this.model.get('state') === 'answered') {
-				this.removeUiEventListeners();
-
 				if(this.model.get('isCorrect')) {
 					Utils.addClass(this.el, 'is-answered');
 					Utils.addClass(this.el, 'is-answered--correct');
@@ -73,8 +58,6 @@ define([
 					Utils.addClass(this.el, 'is-answered--wrong');
 				}
 			} else {
-				this.addUiEventListeners();
-
 				Utils.removeClass(this.el, 'is-answered');
 				Utils.removeClass(this.el, 'is-answered--correct');
 				Utils.removeClass(this.el, 'is-answered--wrong');
